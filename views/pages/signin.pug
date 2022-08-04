@@ -15,6 +15,8 @@ block cssLink
 block jsScript
     script(src="/js/signin.js" defer) 
 
+
+
 block bodyContent
     .signin-section
         .wrapper
@@ -25,14 +27,21 @@ block bodyContent
                 h2 Sign in to Twitter Clone
 
                 form(action='/signin', method="post")
-                    label(for="username") User Name
+                    label(for="username") User Name or Email
 
-                    input#username(type="text", name="username" placeholder="Enter your user name or email" class="form-control" required="")
+                    .user-input 
+                        i.user-icon.fas.fa-user
+                        input#username(type="text", name="username"  class="form-control" required="")
+                    
                     p.error.username-error Username is required 
+
 
                     label(for="password")  Password
 
-                    input#password(type="password", name="password" placeholder="Enter your password" class="form-control" required="")
+                    .user-input 
+                        i.user-icon.fas.fa-lock
+                        input#password(type="password", name="password"  class="form-control" required="")
+                    
                     p.error.password-error Password is required 
 
                     input(type="submit", value="Sign In" class="form-control signin-btn")

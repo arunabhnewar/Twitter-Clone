@@ -14,9 +14,6 @@
 .wrapper {
     max-width: 500px;
     width: 70%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
     margin: 0 auto;
 }
 
@@ -28,6 +25,7 @@
     h2 {
         padding: 15px 0;
         font-weight: 600;
+        text-align: center;
     }
 }
 
@@ -59,7 +57,6 @@ label {
     border-right: 0;
     outline: 0 !important;
     border-radius: 0;
-    font-size: 13px;
 }
 
 .signup-btn {
@@ -82,4 +79,5 @@ a {
 
 .disclaim {
     color: #7A8791;
+    font-size: 14px;
 }

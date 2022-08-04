@@ -24,21 +24,22 @@ block bodyContent
                 div.social-icon
                     i.fab.fa-twitter
 
-                h2 Sign Up to Twitter Clone
+                h2 Join Twitter today
 
                 form(action='/signup', method="post")
 
                     .signup-content 
+
                         div
                             label(for="firstname") First Name
 
-                            input#firstname(type="text", name="firstname" placeholder="Type first name..." class="form-control" required="")
+                            input#firstname(type="text", name="firstname" class="form-control" required="")
                             p.error.firstname-error First name is required
 
-                        div 
+                        div
                             label(for="lastname") Last Name
 
-                            input#lastname(type="text", name="lastname" placeholder="Type last name..." class="form-control" required="")
+                            input#lastname(type="text", name="lastname" class="form-control" required="")
                             p.error.lastname-error Last name is required
 
                     .signup-content
@@ -46,13 +47,13 @@ block bodyContent
                         div 
                             label(for="username") User Name
 
-                            input#username(type="text", name="username" placeholder="Type user name..." class="form-control" required="")
+                            input#username(type="text", name="username" class="form-control" required="")
                             p.error.username-error Username is required 
 
                         div 
                             label(for="email") Email
 
-                            input#email(type="email", name="email" placeholder="Type email..." class="form-control" required="")
+                            input#email(type="email", name="email" class="form-control" required="")
                             p.error.email-error Email address is required 
 
                     .signup-content
@@ -60,14 +61,14 @@ block bodyContent
                         div 
                             label(for="password")  Password
 
-                            input#password(type="password", name="password" placeholder="Type password..." class="form-control" required="")
+                            input#password(type="password", name="password" class="form-control" required="")
                             p.error.password-error Password is required 
 
 
                         div 
                             label(for="confirmpassword")  Confirm password
 
-                            input#confirmpassword(type="password", name="confirmpassword" placeholder="Type confirm password..." class="form-control" required="")
+                            input#confirmpassword(type="password", name="confirmpassword" class="form-control" required="")
                             p.error.confirmpassword-error Confirm password is required
 
                     input(type="submit", value="Sign Up" class="form-control signup-btn")
