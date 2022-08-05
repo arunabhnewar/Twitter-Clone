@@ -19,7 +19,7 @@ const getSignIn = (req, res, next)=> {
 const getSignUp = (req, res, next) => {
 
     try {
-        res.render('pages/signup')
+        res.render('pages/signup', {error:{}, user:{}})
     } catch (error) {
         next(error)
     }
@@ -27,9 +27,17 @@ const getSignUp = (req, res, next) => {
 
 
 
+// Post Sign Up Page Controller
+const signupController = (req, res, next) => {
+    console.log(req.file);
+    console.log(req.body);
+}
+
+
 
 // Module Export
 module.exports = {
     getSignIn,
-    getSignUp
+    getSignUp,
+    signupController
 }

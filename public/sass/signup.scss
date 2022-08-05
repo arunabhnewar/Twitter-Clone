@@ -74,10 +74,21 @@ a {
     color: #A52A2A;
     font-size: 13px;
     margin-bottom: 0 !important;
-    display: none;
+    // display: none;
 }
 
 .disclaim {
     color: #7A8791;
     font-size: 14px;
 }
+
+.avatar-input {
+    background: rgb(82, 180, 245);
+    border: 1px solid rgb(82, 180, 245);
+    color: #FFFFFF;
+
+}
+
+// .form-control[type=file]:not(:disabled):not([readonly]) {
+//     background: red;
+// }
