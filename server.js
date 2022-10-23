@@ -21,13 +21,13 @@ app.set('views', 'views')
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
 
 // Routes
-app.use(authRouter)
+app.use(authRouter)  //Authentication Route
 
 
 
@@ -46,8 +46,8 @@ app.use(errorHandler);
 async function twitter() {
     try {
         await mongoose.connect(process.env.DB_URI, {
-            useUnifiedTopology:true,
-            useNewUrlParser:true
+            useUnifiedTopology: true,
+            useNewUrlParser: true
         });
         console.log("DB Fucked Successfully!!");
     } catch (error) {
@@ -59,7 +59,7 @@ async function twitter() {
 
 
 // Server Listen
-app.listen(process.env.PORT || 3000, () => { 
+app.listen(process.env.PORT || 3000, () => {
     twitter()
     console.log("Server has been fucking on port" + ' ' + 3000);
 })

@@ -4,7 +4,8 @@ const dotenv = require('dotenv');
 const { getSignIn, getSignUp, signupController } = require('../../controllers/auth/authControllers');
 const htmlResponse = require('../../middlewares/common/htmlResponse');
 const avatarUpload = require('../../middlewares/auth/avatarUpload');
-
+const signUpDataValidator = require('../../middlewares/auth/signUpDataValidator');
+const signUpValidationOutput = require('../../middlewares/auth/signUpValidationOutput');
 
 
 // Router
@@ -28,7 +29,12 @@ router.get('/signup', htmlResponse(`Signup - ${process.env.APP_NAME}`), getSignU
 
 
 // Post Sign Up Page Controller
-router.post('/signup', htmlResponse(`Signup - ${process.env.APP_NAME}`), avatarUpload, signupController)
+router.post('/signup', htmlResponse(`Signup - ${process.env.APP_NAME}`),
+    avatarUpload,
+    signUpDataValidator(),
+    signUpValidationOutput,
+    signupController
+);
 
 
 

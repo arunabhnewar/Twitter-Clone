@@ -68,7 +68,7 @@ block bodyContent
                         div 
                             label(for="password")  Password
 
-                            input#password(type="password", name="password" class="form-control" value= user ? user.password : '' required="")
+                            input#password(type="password", name="password" class="form-control" value= user && !error.password && !error.confirmpassword ? user.password : '' required="")
 
                             if error.password 
                                 p.error.password-error #{error.password.msg}
@@ -77,7 +77,7 @@ block bodyContent
                         div 
                             label(for="confirmpassword")  Confirm password
 
-                            input#confirmpassword(type="password", name="confirmpassword" class="form-control" value= user ? user.confirmpassword : '' required="")
+                            input#confirmpassword(type="password", name="confirmpassword" class="form-control" value= user && !error.password && !error.confirmpassword ? user.confirmpassword : '' required="")
                             
                             if error.confirmpassword 
                                 p.error.confirmpassword-error #{error.confirmpassword.msg}

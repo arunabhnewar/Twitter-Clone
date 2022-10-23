@@ -4,13 +4,15 @@ const path = require('path')
 
 
 function avatarUpload(req, res, next) {
+    // Directory
     const uploadDirectory = path.join(__dirname, '/../../public/uploads');
+    // File Size
     const maxFileSize = 10000000;
-    const allowedMimeType = ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml' ];
-    
+    // File Type
+    const allowedMimeType = ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml'];
+
 
     upload(uploadDirectory, maxFileSize, allowedMimeType).single("avatarProfile")(req, res, (err) => {
-        
         if (err) {
             const user = req.body;
 
@@ -18,20 +20,16 @@ function avatarUpload(req, res, next) {
                 avatarProfile: {
                     msg: err?.message
                 },
-                firstname: {
-                    msg: "First name is required"
-                }
-            }
-            
-            res.render('pages/signup' ,{
-                user,
-                error
-            })
+            };
+            req.error = error;
+            next();
         } else {
-            next()
+            next();
         }
     })
 }
+
+
 
 
 

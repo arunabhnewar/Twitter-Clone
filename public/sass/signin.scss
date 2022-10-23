@@ -54,14 +54,14 @@ label {
 }
 
 .form-control {
-    border-bottom: 1px solid #272C30;
     border-left: 0;
     border-top: 0;
     border-right: 0;
-    border-radius: 0;
+    border-radius: 4px;
     background: transparent;
     margin-left: -20px;
     padding: 5px 20px 5px 30px;
+    box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.2);
 }
 
 
