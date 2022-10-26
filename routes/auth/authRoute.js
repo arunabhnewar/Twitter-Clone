@@ -8,6 +8,8 @@ const signUpValidationOutput = require('../../middlewares/auth/signUpValidationO
 const getSignIn = require('../../controllers/auth/getSignin');
 const getSignUp = require('../../controllers/auth/getSignup');
 const signupController = require('../../controllers/auth/signupController');
+const emailConfirmation = require('../../controllers/auth/confirmation');
+const signinController = require('../../controllers/auth/signinController');
 
 
 // Router
@@ -25,6 +27,11 @@ router.get('/signin', htmlResponse(`Signin - ${process.env.APP_NAME}`), getSignI
 
 
 
+// Post Sign In Page Controller
+router.post('/signin', htmlResponse(`Signin - ${process.env.APP_NAME}`),
+    signinController)
+
+
 // Get Sign Up Page 
 router.get('/signup', htmlResponse(`Signup - ${process.env.APP_NAME}`), getSignUp)
 
@@ -37,6 +44,10 @@ router.post('/signup', htmlResponse(`Signup - ${process.env.APP_NAME}`),
     signUpValidationOutput,
     signupController
 );
+
+
+// Email Confirmation
+router.get('/emailConfirmation/:id', emailConfirmation);
 
 
 

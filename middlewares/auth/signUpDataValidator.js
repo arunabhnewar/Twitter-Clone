@@ -16,7 +16,7 @@ const signUpDataValidator = () => {
 
 
         // User Name
-        check("username").trim().notEmpty().withMessage("User name is required")
+        check("username").trim().toLowerCase().notEmpty().withMessage("User name is required")
             .custom(async (value, { req }) => {
 
                 try {
