@@ -66,9 +66,9 @@ const signUpDataValidator = () => {
 
                 const pwd = req.body.password;
                 if (value === pwd) {
-                    return false;
-                } else {
                     return true;
+                } else {
+                    return false;
                 }
 
             }).withMessage("Password doesn't matched")

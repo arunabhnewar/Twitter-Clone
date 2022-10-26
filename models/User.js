@@ -45,6 +45,11 @@ const userSchema = new Schema({
     avatarProfile: {
         type: String,
         required: true,
+    },
+    status: {
+        type: String,
+        enum: ["unverified", "verified", "suspended"],
+        default: "unverified"
     }
 }, {
     timestamps: true

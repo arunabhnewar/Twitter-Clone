@@ -14,7 +14,7 @@ const signUpValidationOutput = (req, res, next) => {
         req.error = { ...req.error, ...mappedErrors };
         next();
     }
-}
+};
 
 // Module Export
 module.exports = signUpValidationOutput;
