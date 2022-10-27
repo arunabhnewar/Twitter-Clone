@@ -17,17 +17,17 @@ const signupController = async (req, res, next) => {
         });
 
     } else {
-        const firstname = req.body.firstname;
-        const lastname = req.body.lastname;
-        const username = req.body.username;
+        const firstName = req.body.firstName;
+        const lastName = req.body.lastName;
+        const userName = req.body.userName;
         const email = req.body.email;
         const password = await hashString(req.body.password);
         const avatarProfile = req.file.filename;
 
         const userObject = User({
-            firstname,
-            lastname,
-            username,
+            firstName,
+            lastName,
+            userName,
             email,
             password,
             avatarProfile

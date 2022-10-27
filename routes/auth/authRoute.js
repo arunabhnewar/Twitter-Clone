@@ -10,6 +10,8 @@ const getSignUp = require('../../controllers/auth/getSignup');
 const signupController = require('../../controllers/auth/signupController');
 const emailConfirmation = require('../../controllers/auth/confirmation');
 const signinController = require('../../controllers/auth/signinController');
+const signinDataValidator = require('../../middlewares/auth/signinDataValidator');
+const signInValidationOutput = require('../../middlewares/auth/signinDataValidationOutput');
 
 
 // Router
@@ -29,6 +31,8 @@ router.get('/signin', htmlResponse(`Signin - ${process.env.APP_NAME}`), getSignI
 
 // Post Sign In Page Controller
 router.post('/signin', htmlResponse(`Signin - ${process.env.APP_NAME}`),
+    signinDataValidator(),
+    signInValidationOutput,
     signinController)
 
 

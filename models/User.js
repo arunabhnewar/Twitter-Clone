@@ -3,19 +3,19 @@ const { Schema, model } = require('mongoose');
 
 
 const userSchema = new Schema({
-    firstname: {
+    firstName: {
         type: String,
         required: true,
         trim: true,
         minLength: 1
     },
-    lastname: {
+    lastName: {
         type: String,
         required: true,
         trim: true,
         minLength: 1
     },
-    username: {
+    userName: {
         type: String,
         required: true,
         trim: true,

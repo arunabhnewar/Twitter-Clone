@@ -8,19 +8,19 @@ const signUpDataValidator = () => {
 
     return [
         // First Name
-        check("firstname").trim().notEmpty().withMessage("First name is required"),
+        check("firstName").trim().notEmpty().withMessage("First name is required"),
 
 
         // Last Name
-        check("lastname").trim().notEmpty().withMessage("Last name is required"),
+        check("lastName").trim().notEmpty().withMessage("Last name is required"),
 
 
         // User Name
-        check("username").trim().toLowerCase().notEmpty().withMessage("User name is required")
+        check("userName").trim().toLowerCase().notEmpty().withMessage("User name is required")
             .custom(async (value, { req }) => {
 
                 try {
-                    const user = await User.findOne({ username: value }, { username: 1 });
+                    const user = await User.findOne({ userName: value }, { userName: 1 });
 
                     if (user) {
                         return Promise.reject()
@@ -60,7 +60,7 @@ const signUpDataValidator = () => {
 
 
         // Confirm Password
-        check("confirmpassword").notEmpty().withMessage("Confirm password is required")
+        check("confirmPassword").notEmpty().withMessage("Confirm password is required")
             .isStrongPassword().withMessage("Password should be strong")
             .custom((value, { req }) => {
 
