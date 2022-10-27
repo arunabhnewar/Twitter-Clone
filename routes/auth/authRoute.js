@@ -12,6 +12,9 @@ const emailConfirmation = require('../../controllers/auth/confirmation');
 const signinController = require('../../controllers/auth/signinController');
 const signinDataValidator = require('../../middlewares/auth/signinDataValidator');
 const signInValidationOutput = require('../../middlewares/auth/signinDataValidationOutput');
+const signInChecker = require('../../middlewares/common/signinChecker');
+const signOutController = require('../../controllers/auth/signOutController');
+
 
 
 // Router
@@ -25,24 +28,24 @@ dotenv.config();
 
 
 // Get Sign In Page 
-router.get('/signin', htmlResponse(`Signin - ${process.env.APP_NAME}`), getSignIn)
+router.get('/signin', htmlResponse(`SignIn - ${process.env.APP_NAME}`), signInChecker, getSignIn)
 
 
 
 // Post Sign In Page Controller
-router.post('/signin', htmlResponse(`Signin - ${process.env.APP_NAME}`),
+router.post('/signin', htmlResponse(`SignIn - ${process.env.APP_NAME}`),
     signinDataValidator(),
     signInValidationOutput,
     signinController)
 
 
 // Get Sign Up Page 
-router.get('/signup', htmlResponse(`Signup - ${process.env.APP_NAME}`), getSignUp)
+router.get('/signup', htmlResponse(`SignUp - ${process.env.APP_NAME}`), signInChecker, getSignUp)
 
 
 
 // Post Sign Up Page Controller
-router.post('/signup', htmlResponse(`Signup - ${process.env.APP_NAME}`),
+router.post('/signup', htmlResponse(`SignUp - ${process.env.APP_NAME}`),
     avatarUpload,
     signUpDataValidator(),
     signUpValidationOutput,
@@ -54,6 +57,8 @@ router.post('/signup', htmlResponse(`Signup - ${process.env.APP_NAME}`),
 router.get('/emailConfirmation/:id', emailConfirmation);
 
 
+// Sign Out 
+router.get('/signout', signOutController)
 
 // Module Export
 module.exports = router;

@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHandler');
 const cookieParser = require('cookie-parser');
-const authRouter = require('./routes/auth/authRoute')
+const authRouter = require('./routes/auth/authRoute');
+const homeRouter = require('./routes/home/homeRoute');
 
 
 // App Initialization and Config
@@ -27,7 +28,10 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 
 // Routes
-app.use(authRouter)  //Authentication Route
+app.use(authRouter);  //Authentication Route
+
+
+app.use('/', homeRouter); //Home Route
 
 
 
