@@ -82,7 +82,15 @@ a {
     margin-bottom: 0 !important;
 }
 
+.disclaimer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
 .disclaim {
     color: #7A8791;
     font-size: 14px;
+
 }

@@ -13,7 +13,10 @@ const signinController = require('../../controllers/auth/signinController');
 const signinDataValidator = require('../../middlewares/auth/signinDataValidator');
 const signInValidationOutput = require('../../middlewares/auth/signinDataValidationOutput');
 const signInChecker = require('../../middlewares/common/signinChecker');
-const signOutController = require('../../controllers/auth/signOutController');
+const getSignOut = require('../../controllers/auth/getSignOut');
+const getResetPassword = require('../../controllers/auth/getResetPassword');
+const resetPasswordController = require('../../controllers/auth/resetPasswordController');
+
 
 
 
@@ -58,7 +61,19 @@ router.get('/emailConfirmation/:id', emailConfirmation);
 
 
 // Sign Out 
-router.get('/signout', signOutController)
+router.get('/signout', getSignOut);
+
+
+
+// Get Reset Password Page
+router.get("/resetPassword", htmlResponse(`Reset Password - ${process.env.APP_NAME}`), getResetPassword);
+
+
+
+// Post Reset Password Page Controller
+router.post('/resetPassword', htmlResponse(`Reset Password - ${process.env.APP_NAME}`), resetPasswordController)
+
+
 
 // Module Export
 module.exports = router;

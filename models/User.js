@@ -56,6 +56,7 @@ const userSchema = new Schema({
 })
 
 
+// Model
 const User = model("User", userSchema);
 
 

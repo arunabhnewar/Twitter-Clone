@@ -1,0 +1,48 @@
+extends ./../../layouts/header.pug
+
+
+block title
+    title= title 
+
+
+
+block cssLink
+    link(rel="stylesheet", href="/css/signin.css")
+
+
+
+block jsScript
+    script(src="/js/verifyOtp.js" defer) 
+
+
+
+block bodyContent
+        .signin-section
+            .wrapper
+                .signin-wrapper
+                    div.social-icon
+                        i.fab.fa-twitter
+
+                    h2 Verify OTP
+
+                    p Send a OTP in #{otp.email} . Check your inbox or spam.
+
+                    form(action='/verificationOTP', method="post")
+
+                        label(for="otp") OTP
+                        
+                        .user-input 
+                            i.user-icon.fas.fa-lock-open
+                            input#userName(type="number", name="otp" maxlength="6" class="form-control", value= otp.value )
+
+                            input(type="hidden" name="otpId" value= otp.otpId)
+                            input(type="hidden" name="otpEmail" value= otp.email)
+                        
+                        if error.otp
+                            p.error.userName-error #{error.otp.msg}
+
+                        input(type="submit" class="form-control signin-btn" value="Verify Now")
+
+                        .footer-link 
+                            p.disclaim.mt Need to sign in? 
+                                a(href='/signin') sign in here

@@ -1,10 +1,10 @@
 // Dependencies
 
 
-const signOutController = (req, res) => {
+const getSignOut = (req, res) => {
     res.clearCookie('access_token');
     res.redirect('/signin')
 }
 
 // Module Export
-module.exports = signOutController;
+module.exports = getSignOut;
