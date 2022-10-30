@@ -25,11 +25,11 @@ block bodyContent
 
                     h2 Verify OTP
 
-                    p Send a OTP in #{otp.email} . Check your inbox or spam.
+                    p.otp-awareness An OTP has been sent to #{otp.email} . Check your mail.
 
                     form(action='/verificationOTP', method="post")
 
-                        label(for="otp") OTP
+                        label(for="otp") Enter OTP
                         
                         .user-input 
                             i.user-icon.fas.fa-lock-open
@@ -43,6 +43,16 @@ block bodyContent
 
                         input(type="submit" class="form-control signin-btn" value="Verify Now")
 
-                        .footer-link 
-                            p.disclaim.mt Need to sign in? 
+                        .countdown
+                            p#countdown.my-3.text-center
+                                | Expire In: 
+                                span.text-success 1:59
+
+                    form(action='/resetPassword', method="post")  
+                        input(type="hidden" name="userName" value=otp.email)    
+
+                        input(type="submit" class="form-control otp_resend_btn" value="OTP Resend" id="otp-resend-btn")
+
+                        .disclaimer 
+                            p.disclaim Need to sign in? 
                                 a(href='/signin') sign in here

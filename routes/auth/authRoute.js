@@ -16,6 +16,11 @@ const signInChecker = require('../../middlewares/common/signinChecker');
 const getSignOut = require('../../controllers/auth/getSignOut');
 const getResetPassword = require('../../controllers/auth/getResetPassword');
 const resetPasswordController = require('../../controllers/auth/resetPasswordController');
+const verifyOTPController = require('../../controllers/auth/verifyOTPController');
+const passwordUpdateController = require('../../controllers/auth/passwordUpdateController');
+const passwordUpdateDataValidator = require('../../middlewares/auth/passwordUpdateDataValidator');
+const passwordUpdateDataValidatorOutput = require('../../middlewares/auth/passwordUpdateDataValidatorOutput');
+
 
 
 
@@ -35,7 +40,7 @@ router.get('/signin', htmlResponse(`SignIn - ${process.env.APP_NAME}`), signInCh
 
 
 
-// Post Sign In Page Controller
+// Post Sign In Page Handler
 router.post('/signin', htmlResponse(`SignIn - ${process.env.APP_NAME}`),
     signinDataValidator(),
     signInValidationOutput,
@@ -47,7 +52,7 @@ router.get('/signup', htmlResponse(`SignUp - ${process.env.APP_NAME}`), signInCh
 
 
 
-// Post Sign Up Page Controller
+// Post Sign Up Page Handler
 router.post('/signup', htmlResponse(`SignUp - ${process.env.APP_NAME}`),
     avatarUpload,
     signUpDataValidator(),
@@ -70,8 +75,21 @@ router.get("/resetPassword", htmlResponse(`Reset Password - ${process.env.APP_NA
 
 
 
-// Post Reset Password Page Controller
-router.post('/resetPassword', htmlResponse(`Reset Password - ${process.env.APP_NAME}`), resetPasswordController)
+// Post Reset Password Page Handler
+router.post('/resetPassword', htmlResponse(`Reset Password - ${process.env.APP_NAME}`), resetPasswordController);
+
+
+
+// Post OTP Verification Handler
+router.post('/verificationOTP', htmlResponse(`Verify OTP - ${process.env.APP_NAME}`), verifyOTPController);
+
+
+// Post Create New Password Handler
+router.post('/createNewPassword', htmlResponse(`Create New Password - ${process.env.APP_NAME}`),
+    passwordUpdateDataValidator,
+    passwordUpdateDataValidatorOutput,
+    passwordUpdateController
+)
 
 
 

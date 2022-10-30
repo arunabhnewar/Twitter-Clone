@@ -8,11 +8,11 @@ const otpSchema = new Schema({
         trim: true,
         minLength: 6
     },
-    // status: {
-    //     type: boolean,
-    //     required: true,
-    //     default: false,
-    // },
+    status: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
     email: {
         type: String,
         required: true,

@@ -25,7 +25,7 @@ const resetPasswordController = async (req, res, next) => {
             const otpObj = new OTP({
                 OTP: Math.floor((Math.random() * 900000) + 100000),
                 email: user.email,
-                expireIn: Date.now() + 180000,
+                expireIn: Date.now() + 120000,
             });
 
             const otp = await otpObj.save();
@@ -59,12 +59,13 @@ const resetPasswordController = async (req, res, next) => {
                     userName: {
                         msg: "User not found!!",
                     }
-                }
-            })
+                },
+                user: { userName },
+            });
         }
 
     } catch (error) {
-
+        next(error)
     }
 }
 

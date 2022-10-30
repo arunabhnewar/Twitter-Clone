@@ -22,7 +22,7 @@ const signupController = async (req, res, next) => {
         const userName = req.body.userName;
         const email = req.body.email;
         const password = await hashString(req.body.password);
-        const avatarProfile = req.file.filename;
+        const avatarProfile = req.file?.filename || "avatar.png";
 
         const userObject = User({
             firstName,
