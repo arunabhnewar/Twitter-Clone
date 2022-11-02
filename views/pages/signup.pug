@@ -12,7 +12,7 @@ block cssLink
 
 
 block jsScript
-    script(src="/js/signin.js" defer) 
+    script(src="/js/signup.js" defer) 
 
 
 
@@ -68,7 +68,11 @@ block bodyContent
                         div 
                             label(for="password")  Password
 
-                            input#password(type="password", name="password" class="form-control" value= user && !error.password && !error.confirmPassword ? user.password : '' required="")
+                            .pwd_section
+                                input#password(type="password", name="password" class="form-control" value= user && !error.password && !error.confirmPassword ? user.password : '' required="")
+
+                                span#pwd_visible_icon
+                                    i.fas.fa-eye-slash
 
                             if error.password 
                                 p.error.password-error #{error.password.msg}
@@ -77,10 +81,16 @@ block bodyContent
                         div 
                             label(for="confirmPassword")  Confirm password
 
-                            input#confirmPassword(type="password", name="confirmPassword" class="form-control" value= user && !error.password && !error.confirmPassword ? user.confirmPassword : '' required="")
+                            .pwd_section
+                                input#confirmPassword(type="password", name="confirmPassword" class="form-control" value= user && !error.password && !error.confirmPassword ? user.confirmPassword : '' required="")
                             
+                                span#confirm_pwd_visible_icon
+                                    i.fas.fa-eye-slash
+
                             if error.confirmPassword 
                                 p.error.confirmPassword-error #{error.confirmPassword.msg}
+
+                    h6#pwd-err fucking errors
 
                     label(for="avatarProfile")  Profile Avatar
 

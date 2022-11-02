@@ -1,4 +1,8 @@
 .confirmation_section {
+    background: #1D2A35;
+    width: 100vw;
+    height: 100vh;
+
     .confirmation_image {
         text-align: center
     }
@@ -17,7 +21,11 @@
 
     .confirmation-text {
         p {
-            color: #CC5500;
+            color: #FFFFFF;
+
+            span {
+                color: #1DA1F2;
+            }
         }
     }
 }

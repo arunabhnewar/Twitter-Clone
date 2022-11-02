@@ -27,6 +27,13 @@
         font-weight: 600;
         text-align: center;
     }
+
+    h6#pwd-err {
+        color: red;
+        margin-top: 10px;
+        font-weight: 400;
+        font-size: 14px;
+    }
 }
 
 .social-icon {
@@ -40,6 +47,23 @@
 
     div {
         margin-right: 10px;
+
+        .pwd_section {
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            span {
+                position: absolute;
+                right: 10px;
+                cursor: pointer;
+
+                i.fas.fa-eye-slash,
+                i.fas.fa-eye {
+                    color: #52B4F5;
+                }
+            }
+        }
     }
 }
 

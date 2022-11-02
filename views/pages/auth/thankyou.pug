@@ -9,17 +9,16 @@ block cssLink
 
 
 block bodyContent 
-    main 
-        .confirmation_section
-            .confirmation_image.text-center 
-                img(src="/assets/thankyou.png", alt="")
+    .confirmation_section
+        .confirmation_image.text-center 
+            img(src="/assets/thankyou.png", alt="")
 
-            .px-4.text-center.text-primary
-                h5 Your account was verified successfully.
+        .px-4.text-center.text-primary.thankyou_txt
+            h5 Your account was verified successfully.
 
-            .w-10.text-center.text-secondary
-                p Now you are a verified user and cam sign in with your credentials.
+        .w-10.text-center.text-secondary
+            p Now you are a verified user and cam sign in with your credentials.
 
-            .submit_btn.text-center 
-                button#submit.submit(type='submit')
-                    a(href='/signin') Go to Sign In page 
+        .submit_btn.text-center 
+            button#submit.submit(type='submit')
+                a(href='/signin') Go to Sign In page 
