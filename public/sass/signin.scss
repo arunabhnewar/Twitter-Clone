@@ -44,14 +44,29 @@ label {
 }
 
 .user-input {
+    position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
+
+    .user-icon {
+        z-index: 1;
+    }
+
+    span {
+        position: absolute;
+        right: 4%;
+        cursor: pointer;
+
+        i.fas.fa-eye-slash,
+        i.fas.fa-eye {
+            color: #52B4F5;
+        }
+    }
 }
 
-.user-icon {
-    z-index: 1;
-}
+
+
+
 
 .form-control {
     border-left: 0;

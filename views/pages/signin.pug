@@ -39,10 +39,13 @@ block bodyContent
 
                     label(for="password")  Password
 
-                    .user-input 
+                    .user-input
                         i.user-icon.fas.fa-lock
                         input#password(type="password", name="password"  class="form-control" value=error.password ? "" : user.password)
                     
+                        span#pass_visible_icon
+                            i.fas.fa-eye-slash
+
                     if error.password
                         p.error.userName-error #{error.password-msg} 
 
