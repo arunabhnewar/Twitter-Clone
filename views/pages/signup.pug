@@ -65,7 +65,7 @@ block bodyContent
 
                     .signup-content
 
-                        div 
+                        div.position-relative
                             label(for="password")  Password
 
                             .pwd_section
@@ -90,9 +90,9 @@ block bodyContent
                             if error.confirmPassword 
                                 p.error.confirmPassword-error #{error.confirmPassword.msg}
 
-                    h6#pwd-err fucking errors
+                    h6#pwd-err.position-absolute 
 
-                    label(for="avatarProfile")  Profile Avatar
+                    label.mt-5(for="avatarProfile")  Profile Avatar
 
                     input#avatarProfile(type="file", name="avatarProfile" class="form-control avatar-input" accept=".jpg, .jpeg, .png, .svg")
                     if error.avatarProfile 
