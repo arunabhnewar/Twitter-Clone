@@ -1,14 +1,16 @@
-// Reference 
-const openModalBtn = document.getElementById("open_modal_btn");
-const modal = document.getElementById("modal");
+// Reference
+const txtFieldTweetContent = document.querySelector("textarea#tweetContent");
+const tweetBtn = document.querySelector("button.tweet_post_btn");
 
 
-openModalBtn.onclick = function () {
-    modal.style.display = "block";
-}
 
-window.onclick = function (e) {
-    if (e.target === modal) {
-        modal.style.display = "none";
+
+txtFieldTweetContent.addEventListener("input", function (e) {
+    const value = this.value;
+
+    if (value) {
+        tweetBtn.removeAttribute("disabled")
+    } else {
+        tweetBtn.setAttribute("disabled", true);
     }
-}
+})
