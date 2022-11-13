@@ -13,6 +13,10 @@ a {
     text-decoration: none;
 }
 
+body {
+    background: #000000;
+}
+
 #main_section {
     display: flex;
     justify-content: space-around;
@@ -47,12 +51,13 @@ a {
                 transition: 0.5s;
 
                 &:hover {
-                    background: #E8F5FE;
+                    background: #141e25;
                 }
 
                 i.fab.fa-twitter {
                     font-size: 32px;
                     cursor: pointer;
+                    color: #D6D9DB;
                 }
             }
 
@@ -75,12 +80,12 @@ a {
                     width: fit-content;
                     transition: 0.5s;
                     cursor: pointer;
-                    color: #000000;
+                    color: #E7E9EA;
                     font-size: 18px;
                     font-weight: 500;
 
                     &:hover {
-                        background: #E6E7E7;
+                        background: #181818;
                         font-weight: 700;
                     }
 
@@ -142,7 +147,7 @@ a {
             margin-right: 5px;
 
             &:hover {
-                background: #E6E7E7;
+                background: #181818;
             }
 
             .avatar_profile img {
@@ -161,10 +166,12 @@ a {
 
                 h6 {
                     font-size: 16px;
+                    color: #E7E9EA;
                 }
 
                 p {
                     font-size: 14px;
+                    color: #71767B;
                 }
             }
 
@@ -178,27 +185,36 @@ a {
     }
 }
 
-.modal {
-    display: none;
+.modall {
+    display: block;
     position: fixed;
     z-index: 1;
-    top: 58%;
-    left: 10%;
-    padding-top: 100px;
-    max-width: 300px;
+    top: 73%;
+    left: 13%;
 
-    .modal-content {
-        background-color: #fefefe;
+    .modall-content {
+        background-color: #000000;
         margin: auto;
-        padding: 20px;
+        padding: 5px;
         border: 0;
-        width: 80%;
-        box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.2);
+        width: 220px;
+        box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+        border-radius: 5px;
 
-        a {
-            color: #000;
-            font-weight: 300;
-            padding: 15px 0;
+        p {
+            padding: 5px 20px;
+            transition: 0.5s;
+
+            &:hover {
+                background: #16181C;
+                border-radius: 5px;
+            }
+
+            a {
+                color: #DCDEDF;
+                font-weight: 300;
+                font-size: 14px;
+            }
         }
     }
 }
@@ -207,21 +223,29 @@ a {
 
 //=========== Mid side container ============//
 .mid_side_container {
-    border-left: 1px solid #EFF3F4;
-    height: 100vh;
+    border-left: 1px solid #2F3336;
+    height: auto;
     flex: 1;
+    // overflow-y: hidden visible;
 
     .mid_heading_content {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
         height: 50px;
-        border-bottom: 1px solid #EFF3F4;
+        border-bottom: 1px solid #2f3336;
         padding: 15px;
+        z-index: 3;
+        position: fixed;
+        background: #010507;
+        align-items: center;
+        width: 600px;
+        justify-content: space-between;
+        border-left: 1px solid #2F3336;
+        border-right: 1px solid #2F3336;
 
         h4 {
             font-size: 20px;
-            font-weight: 600;
+            font-weight: 500;
+            color: #E7E9EA;
         }
 
         span {
@@ -235,7 +259,7 @@ a {
             transition: 0.5s;
 
             &:hover {
-                background: #e0edf7;
+                background: #191919;
             }
         }
     }
@@ -243,8 +267,12 @@ a {
     .create_tweet_section {
         display: flex;
         justify-content: space-between;
-        padding: 15px;
-        border-bottom: 1px solid #EFF3F4;
+        padding: 11px;
+        border-bottom: 1px solid #2F3336;
+        z-index: 0;
+        margin-top: 49px;
+        border-left: 1px solid #2F3336;
+        border-right: 1px solid #2F3336;
 
         .avatar_section {
             flex-basis: 45px;
@@ -267,11 +295,70 @@ a {
                 resize: none;
                 height: 57px;
                 width: 100%;
+                background: #000000;
+                color: #D6D9DB;
+            }
+
+            .image_container {
+                display: grid;
+                grid-template-columns: auto auto;
+                gap: 10px;
+                width: 100%;
+                margin-bottom: 25px;
+
+                .img {
+                    position: relative;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 10px;
+                        object-fit: cover;
+                    }
+
+                    span#cls_btn {
+                        position: absolute;
+                        right: 16px;
+                        top: 6px;
+                        background: #52565A;
+                        color: #FFFFFF;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                    }
+                }
+
             }
 
             .action_section {
                 display: flex;
-                justify-content: flex-end;
+                justify-content: space-between;
+                align-items: center;
+                padding: 9px;
+                border-top: 1px solid #2F3336;
+
+                label {
+                    cursor: pointer;
+                    height: 32px;
+                    width: 32px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    transition: 0.5s;
+
+                    &:hover {
+                        background: #031019;
+                    }
+                }
+
+                #imagePost {
+                    display: none;
+                }
 
                 .tweet_post_btn:disabled {
                     background: #8ECDF7;
@@ -295,8 +382,114 @@ a {
             }
         }
     }
-}
 
+    .newTweetContainer {
+        border-left: 1px solid #2F3336;
+
+        h6.nonePost_show {
+            text-align: center;
+            color: #1D9BF0;
+            font-weight: 400;
+            margin-top: 10px;
+        }
+
+        .newTweet {
+            display: flex;
+            padding: 11px;
+            border-bottom: 1px solid #2F3336;
+            border-right: 1px solid #2F3336;
+
+            .avatar_image {
+                width: 60px;
+
+                .image img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 25px;
+                    overflow: hidden;
+                    margin-right: 15px;
+
+                    img.avatar {
+                        width: 100%;
+
+                    }
+                }
+            }
+
+            .newTweet_body {
+
+                .newTweet_header {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    a.show_name {
+                        color: #CED0D1;
+                        padding-right: 4px;
+                    }
+
+                    span.show_username {
+                        color: #5E6266;
+                        padding-right: 25px;
+                    }
+
+                    .timeAgo {
+                        color: #5E6266;
+                        padding-right: 10px;
+                    }
+                }
+
+                .newTweet_content {
+                    color: #CED0D1;
+                    margin: 5px 0 20px 0;
+                }
+
+                .newTweet_images {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    gap: 10px;
+                    width: 100%;
+                    margin-bottom: 5px;
+
+                    .newTweet_img {
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 10px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .newTweet_footer {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 10px 0;
+
+                    button.comment,
+                    button.retweet,
+                    button.love {
+                        border: 0;
+                        outline: 0;
+                        background: transparent;
+
+                        i.fas.fa-comment,
+                        i.fas.fa-retweet,
+                        i.fas.fa-heart {
+                            color: #4d5053;
+                        }
+
+                        span {
+                            color: #4d5053;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 //=========== Right side container ============//
 .right_side_container {

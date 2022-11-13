@@ -9,6 +9,7 @@ const signInChecker = async (req, res, next) => {
             const decode = await jwt.verify(token, process.env.JWT_SECRET);
 
             req.email = decode.email;
+            req.id = decode._id;
             req.userName = decode.userName;
 
             if (req.originalUrl === "/signin" || req.originalUrl === "/signup") {

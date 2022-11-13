@@ -7,6 +7,7 @@ const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHan
 const cookieParser = require('cookie-parser');
 const authRouter = require('./routes/auth/authRoute');
 const homeRouter = require('./routes/home/homeRoute');
+const postRoute = require('./routes/apis/postRoute');
 
 
 // App Initialization and Config
@@ -32,7 +33,7 @@ app.use(authRouter);  //Authentication Route
 
 
 app.use('/', homeRouter); //Home Route
-
+app.use("/posts", postRoute);
 
 
 // Not Found Handler

@@ -29,6 +29,7 @@ const signinDataValidator = () => {
                     );
 
                     if (user) {
+                        req.id = user._id;
                         req.userName = user.userName;
                         req.email = user.email;
                         req.password = user.password;

@@ -23,15 +23,12 @@ const passwordUpdateDataValidatorOutput = require('../../middlewares/auth/passwo
 
 
 
-
-
 // Router
 const router = Router();
 
 
 // App Initialization and Config
 dotenv.config();
-
 
 
 

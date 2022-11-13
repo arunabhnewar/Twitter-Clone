@@ -10,11 +10,12 @@ const signinController = async (req, res, next) => {
         if (req.validUser) {
             const token = await jwt.sign(
                 {
+                    _id: req.id,
                     userName: req.userName,
                     email: req.email,
                 },
                 process.env.JWT_SECRET,
-                { expiresIn: "24h" }
+                { expiresIn: "48h" }
             );
 
             res.status(200);

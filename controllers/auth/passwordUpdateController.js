@@ -27,11 +27,12 @@ const passwordUpdateController = async (req, res, next) => {
             if (output) {
                 const token = await jwt.sign(
                     {
+                        _id: output._id,
                         userName: output.userName,
                         email: output.email,
                     },
                     process.env.JWT_SECRET,
-                    { expiresIn: "24h" }
+                    { expiresIn: "48h" }
                 );
 
                 res.status(200);
