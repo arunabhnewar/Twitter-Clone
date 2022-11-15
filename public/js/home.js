@@ -57,11 +57,15 @@ function createNewTweet(data) {
         <img class="avatar" src="${window.location.origin}/uploads/${avatarProfile}"  />
         </div>
     </div>
+
     <div class="newTweet_body">
         <div class="newTweet_header">
-        <a href="/uploads/${userName}" class="show_name"> ${firstName + " " + lastName} </a>
-        <span class="show_username"> @${userName} .</span>
-        <div class="timeAgo">${timeAgo}</div>
+            <div class="header_items">
+                <a href="/uploads/${userName}" class="show_name"> ${firstName + " " + lastName} </a>
+                <span class="show_username"> @${userName} .</span>
+                <div class="timeAgo">${timeAgo}</div>
+            </div>
+            <div class="posted_more" data-toggle='tooltip', data-placement='bottom', title='more'><i class="fas fa-ellipsis-h"></i></div>
         </div>
 
         <div class="newTweet_content">${tweetTxtContent}</div>
