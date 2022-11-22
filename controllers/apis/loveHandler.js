@@ -8,8 +8,8 @@ const loveHandler = async (req, res, next) => {
         const postId = req.params.id;
         const userId = req.id;
 
-        const newData = User.findOne({ _id: req.id });
-        // return newData;
+        const newData = await User.findOne({ _id: req.id });
+
         const isLoved = newData?.loves && newData?.loves?.includes(postId);
         const option = isLoved ? "$pull" : "$addToSet";
 
