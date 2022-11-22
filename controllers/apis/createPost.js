@@ -8,6 +8,7 @@ const createPost = async (req, res, next) => {
             tweetTxtContent: req.body.tweetTxtContent,
             images: [],
             tweetedBy: req.id,
+            loves: [],
         };
 
         [...req.files].forEach(file => {

@@ -50,7 +50,13 @@ const userSchema = new Schema({
         type: String,
         enum: ["unverified", "verified", "suspended"],
         default: "unverified"
-    }
+    },
+    loves: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Tweet",
+        }
+    ]
 }, {
     timestamps: true
 })

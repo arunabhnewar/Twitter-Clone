@@ -17,6 +17,12 @@ const tweetSchema = new mongoose.Schema({
         required: true,
         ref: "User",
     },
+    loves: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ]
 },
     {
         timestamps: true,

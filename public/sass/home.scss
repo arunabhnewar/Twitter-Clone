@@ -503,6 +503,14 @@ body {
                         &:hover {
                             color: #1A8AD6;
                         }
+
+                        i {
+                            pointer-events: none;
+                        }
+
+                        span {
+                            pointer-events: none;
+                        }
                     }
 
 
@@ -516,6 +524,14 @@ body {
                         &:hover {
                             color: #019866
                         }
+
+                        i {
+                            pointer-events: none;
+                        }
+
+                        span {
+                            pointer-events: none;
+                        }
                     }
 
 
@@ -528,6 +544,24 @@ body {
 
                         &:hover {
                             color: #C21465;
+                        }
+
+                        i {
+                            pointer-events: none;
+                        }
+
+                        span {
+                            pointer-events: none;
+                        }
+                    }
+
+                    button.love.lovedIt {
+                        i {
+                            color: #F91880;
+                        }
+
+                        span {
+                            color: #F91880;
                         }
                     }
                 }

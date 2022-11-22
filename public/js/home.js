@@ -9,12 +9,15 @@ const newTweetContainer = document.querySelector(".newTweetContainer")
 let postedImages = [];
 
 
+
 // Create new tweet post
 function createNewTweet(data) {
-    const { tweetTxtContent,
+    const { _id: postId,
+        tweetTxtContent,
         images: tweetImages,
         tweetedBy: { _id, firstName, lastName, userName, avatarProfile },
-        createdAt } = data;
+        createdAt,
+        loves } = data;
 
 
     // Time ago function
@@ -75,17 +78,17 @@ function createNewTweet(data) {
         <div class="newTweet_footer">
             <button class="comment">
                 <i class="fas fa-comment"></i>
-            </svg> <span>99</span>
+            </svg> <span>3</span>
             </button>
 
             <button class="retweet">
             <i class="fas fa-retweet"></i>
-            <span>199</span>
+            <span>0</span>
             </button>
 
-            <button class="love">
+            <button class="love ${user.loves.includes(postId) ? "lovedIt" : ""}" onclick="loveHandler(event, '${postId}')" >
             <i class="fas fa-heart"></i>
-            <span>69</span>
+            <span>${loves.length ? loves.length : ""}</span>
             </button>
         </div>
     </div>
@@ -124,6 +127,8 @@ const allPostLoad = async () => {
 }
 
 allPostLoad();
+
+
 
 // Tweet post button enable or disable handle
 txtFieldTweetContent.addEventListener("input", function (e) {
@@ -224,5 +229,29 @@ tweetBtn.addEventListener("click", function () {
             console.log(err);
         })
 })
+
+
+
+// Love handler
+function loveHandler(event, postId) {
+    const loveBtn = event.target;
+    const span = loveBtn.querySelector("span")
+
+
+    const url = `${window.location.origin}/posts/love/${postId}`
+
+    fetch(url, {
+        method: "PUT",
+    }).then(res => res.json())
+        .then(data => {
+
+            if (data.loves.includes(user._id)) {
+                loveBtn.classList.add('lovedIt');
+            } else {
+                loveBtn.classList.remove('lovedIt');
+            };
+            span.innerText = data.loves.length ? data.loves.length : "";
+        })
+}
 
 

@@ -30,7 +30,9 @@ const signupController = async (req, res, next) => {
             userName,
             email,
             password,
-            avatarProfile
+            avatarProfile,
+            status: "unverified",
+            loves: []
 
         });
         const user = await userObject.save();
