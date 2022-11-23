@@ -9,6 +9,8 @@ const createPost = async (req, res, next) => {
             images: [],
             tweetedBy: req.id,
             loves: [],
+            retweets: [],
+            postData: null,
         };
 
         [...req.files].forEach(file => {

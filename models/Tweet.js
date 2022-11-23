@@ -22,7 +22,17 @@ const tweetSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         }
-    ]
+    ],
+    retweetUsers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ],
+    postData: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tweet",
+    }
 },
     {
         timestamps: true,

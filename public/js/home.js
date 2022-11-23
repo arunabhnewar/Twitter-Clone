@@ -12,12 +12,29 @@ let postedImages = [];
 
 // Create new tweet post
 function createNewTweet(data) {
+
+    let newData = data;
+    let reTweetedPost = '';
+
+    if (data.postData) {
+        newData = data.postData;
+        reTweetedPost = `
+        <p class="reTweeted_post">
+        <i class="fas fa-retweet"></i>
+        <span class="retweeted_user_link"> ${data.tweetedBy.userName === user.userName ? "You Retweeted" : "<a href='/profile/" + data.tweetedBy.userName + ">" + data.tweetedBy.userName + " </a> Retweeted"} </span>
+        </p>
+        `;
+    };
+
+
     const { _id: postId,
         tweetTxtContent,
         images: tweetImages,
         tweetedBy: { _id, firstName, lastName, userName, avatarProfile },
         createdAt,
-        loves } = data;
+        loves,
+        retweetUsers,
+    } = newData;
 
 
     // Time ago function
@@ -52,44 +69,52 @@ function createNewTweet(data) {
     const timeAgo = timeSince(new Date(createdAt).getTime());
 
     const div = document.createElement("div");
-    div.classList.add("newTweet");
 
     div.innerHTML = `
-    <div class="avatar_image">
-        <div class="image">
-        <img class="avatar" src="${window.location.origin}/uploads/${avatarProfile}"  />
-        </div>
-    </div>
+    
+    ${reTweetedPost}
 
-    <div class="newTweet_body">
-        <div class="newTweet_header">
-            <div class="header_items">
-                <a href="/uploads/${userName}" class="show_name"> ${firstName + " " + lastName} </a>
-                <span class="show_username"> @${userName} .</span>
-                <div class="timeAgo">${timeAgo}</div>
+    <div class="newTweet">
+        <div class="avatar_image">
+            <div class="image">
+            <img class="avatar" src="${window.location.origin}/uploads/${avatarProfile}"  />
             </div>
-            <div class="posted_more" data-toggle='tooltip', data-placement='bottom', title='more'><i class="fas fa-ellipsis-h"></i></div>
         </div>
 
-        <div class="newTweet_content">${tweetTxtContent}</div>
+        <div class="newTweet_body">
+            <div class="newTweet_header">
+                <div class="header_items">
+                    <a href="/uploads/${userName}" class="show_name"> ${firstName + " " + lastName} </a>
+                    <span class="show_username"> @${userName} .</span>
+                    <div class="timeAgo">${timeAgo}</div>
+                </div>
+                <div class="posted_more" data-toggle='tooltip', data-placement='bottom', title='more'><i class="fas fa-ellipsis-h"></i></div>
+            </div>
 
-        <div class="newTweet_images"></div>
+            <div class="newTweet_content">${tweetTxtContent}</div>
 
-        <div class="newTweet_footer">
-            <button class="comment">
-                <i class="fas fa-comment"></i>
-            </svg> <span>3</span>
-            </button>
+            <div class="newTweet_images"></div>
 
-            <button class="retweet">
-            <i class="fas fa-retweet"></i>
-            <span>0</span>
-            </button>
+            <div class="newTweet_footer">
+                <button class="comment"  data-toggle='tooltip', data-placement='bottom', title='Reply'>
+                    <i class="fas fa-comment"></i>
+                <span>3</span>
+                </button>
 
-            <button class="love ${user.loves.includes(postId) ? "lovedIt" : ""}" onclick="loveHandler(event, '${postId}')" >
-            <i class="fas fa-heart"></i>
-            <span>${loves.length ? loves.length : ""}</span>
-            </button>
+                <button class="retweet ${retweetUsers.includes(user._id) ? "active" : ""}" onclick="retweetHandler(event, '${postId}')"  data-toggle='tooltip', data-placement='bottom', title='Retweet'>
+                    <i class="fas fa-retweet"></i>
+                    <span>${retweetUsers.length || ""}</span>
+                </button>
+
+                <button class="love ${user.loves.includes(postId) ? "lovedIt" : ""}" onclick="loveHandler(event, '${postId}')"  data-toggle='tooltip', data-placement='bottom', title='Like'>
+                    <i class="fas fa-heart"></i>
+                    <span>${loves.length ? loves.length : ""}</span>
+                </button>
+
+                <button class="share"  data-toggle='tooltip', data-placement='bottom', title='Share'>
+                    <i class="fas fa-upload"></i>
+                </button>
+            </div>
         </div>
     </div>
     `;
@@ -255,3 +280,26 @@ function loveHandler(event, postId) {
 }
 
 
+
+
+// Retweet handler
+function retweetHandler(event, postId) {
+    const retweetBtn = event.target;
+    const span = retweetBtn.querySelector("span")
+
+
+    const url = `${window.location.origin}/posts/retweet/${postId}`
+
+    fetch(url, {
+        method: "POST",
+    }).then(res => res.json())
+        .then(data => {
+
+            if (data?.retweetUsers?.includes(user._id)) {
+                retweetBtn.classList.add('active');
+            } else {
+                retweetBtn.classList.remove('active');
+            };
+            span.innerText = data.retweetUsers.length ? data.retweetUsers.length : "";
+        })
+}

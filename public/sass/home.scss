@@ -386,6 +386,31 @@ body {
     .newTweetContainer {
         border-left: 1px solid #2F3336;
 
+        p.reTweeted_post {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 35px;
+            padding-top: 5px;
+
+            i {
+                color: #6A6F73;
+            }
+
+            span.retweeted_user_link {
+                padding-left: 15px;
+                color: #6A6F73;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                a {
+                    color: #6A6F73;
+                }
+            }
+        }
+
         h6.nonePost_show {
             text-align: center;
             color: #1D9BF0;
@@ -395,7 +420,7 @@ body {
 
         .newTweet {
             display: flex;
-            padding: 11px;
+            padding: 5px 11px;
             border-bottom: 1px solid #2F3336;
             border-right: 1px solid #2F3336;
 
@@ -489,7 +514,7 @@ body {
 
                 .newTweet_footer {
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: space-around;
                     align-items: center;
                     margin: 10px 0;
 
@@ -534,6 +559,17 @@ body {
                         }
                     }
 
+                    button.retweet.active {
+
+                        i {
+                            color: #019866
+                        }
+
+                        span {
+                            color: #019866
+                        }
+                    }
+
 
                     button.love {
                         border: 0;
@@ -562,6 +598,18 @@ body {
 
                         span {
                             color: #F91880;
+                        }
+                    }
+
+                    button.share {
+                        border: 0;
+                        outline: 0;
+                        background: transparent;
+                        color: #4d5053;
+                        transition: 0.5s;
+
+                        &:hover {
+                            color: #1A8AD6;
                         }
                     }
                 }

@@ -31,8 +31,8 @@ const signUpDataValidator = () => {
                 } catch (error) {
                     throw error;
                 }
-            }).withMessage("This user name is already taken").isLength({ min: 3 })
-            .withMessage('User name should be at least 3 characters'),
+            }).withMessage("This user name is already taken").isLength({ min: 5 })
+            .withMessage('User name should be at least 5 characters'),
 
 
         // Email
