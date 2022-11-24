@@ -96,7 +96,9 @@ function createNewTweet(data) {
             <div class="newTweet_images"></div>
 
             <div class="newTweet_footer">
-                <button class="comment"  data-toggle='tooltip', data-placement='bottom', title='Reply'>
+
+                <button class="reply" data-post='${JSON.stringify(data)}' onclick="replyhandler(event, '${postId}')"  
+                data-toggle="modal" data-target="#replyModal" data-toggle='tooltip', data-placement='bottom', title='Reply' >
                     <i class="fas fa-comment"></i>
                 <span>3</span>
                 </button>
@@ -302,4 +304,38 @@ function retweetHandler(event, postId) {
             };
             span.innerText = data.retweetUsers.length ? data.retweetUsers.length : "";
         })
+}
+
+
+
+// Reply handler
+function replyhandler(event, postId) {
+    const replyButton = event.target;
+    const postObj = JSON.parse(replyButton.dataset?.post);
+
+    const modal = document.querySelector("#replyModal");
+    const modalBody = modal.querySelector(".modal-body");
+    modalBody.innerHTML = "";
+
+    const tweetElement = createNewTweet(postObj);
+    modalBody.appendChild(tweetElement);
+
+    // $("#replyModal").modal("toggle");
+    console.log(postId)
+    console.log(postObj)
+
+    // const url = `${window.location.origin}/posts/reply/${postId}`
+
+    // fetch(url, {
+    //     method: "POST",
+    // }).then(res => res.json())
+    //     .then(data => {
+
+    //         if (data?.replyUsers?.includes(user._id)) {
+    //             replyBtn.classList.add('active');
+    //         } else {
+    //             replyBtn.classList.remove('active');
+    //         };
+    //         span.innerText = data.replyUsers.length ? data.replyUsers.length : "";
+    //     })
 }

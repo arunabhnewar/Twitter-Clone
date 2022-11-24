@@ -442,6 +442,7 @@ body {
             }
 
             .newTweet_body {
+                width: 100%;
 
                 .newTweet_header {
                     display: flex;
@@ -518,7 +519,7 @@ body {
                     align-items: center;
                     margin: 10px 0;
 
-                    button.comment {
+                    button.reply {
                         border: 0;
                         outline: 0;
                         background: transparent;
@@ -623,4 +624,240 @@ body {
     background: #6A150D;
     height: 100vh;
     flex-basis: 350px;
+}
+
+
+
+// Reply Modal
+div#replyModal {
+    background: rgba(91, 112, 131, 0.4);
+
+    .modal-dialog {
+
+        .modal-content {
+            background: #000000;
+
+            .modal-header {
+                padding: 5px;
+                margin-left: 10px;
+                border-bottom: 2px solid transparent;
+
+                button.btn-close {
+                    border: 0;
+                    outline: 0;
+                    background: transparent;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    transition: 0.5s;
+
+                    &:hover {
+                        background: #181818;
+                    }
+
+                    span {
+                        font-size: 30px;
+                        color: #eff3f4;
+                    }
+                }
+            }
+
+            .modal-body {
+
+                .newTweet {
+                    display: flex;
+
+                    .avatar_image {
+                        margin-right: 15px;
+
+                        .image img {
+                            width: 45px;
+                            height: 45px;
+                            border-radius: 50%;
+
+                            img.avatar {
+                                width: 100%;
+                                height: 100%;
+
+                            }
+                        }
+                    }
+
+
+                    .newTweet_body {
+
+
+                        .newTweet_header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            .header_items {
+                                display: flex;
+
+                                a {
+                                    color: #eff3f4;
+                                    cursor: none;
+
+                                    &:hover {
+                                        text-decoration: none;
+                                    }
+                                }
+
+                                span.show_username {
+                                    color: #5e6266;
+                                    margin-left: 5px;
+                                }
+
+                                .timeAgo {
+                                    color: #5e6266;
+                                    margin-left: 5px;
+                                }
+                            }
+
+                            .posted_more {
+                                display: none;
+                            }
+                        }
+
+                        .newTweet_content {
+                            color: #eff3f4;
+                        }
+
+                        .newTweet_footer {
+
+                            button {
+                                display: none;
+                            }
+
+                        }
+                    }
+                }
+
+
+            }
+
+            .modal-footer {
+                border-top: 2px solid transparent;
+
+                .create_post {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 1px;
+                    z-index: 0;
+
+
+                    .reply_avatar {
+                        flex-basis: 45px;
+                        height: 45px;
+                        border-radius: 28px;
+                        overflow: hidden;
+                        margin-right: 5px;
+
+                        img {
+                            width: 100%;
+                        }
+                    }
+
+
+                    .post_field {
+                        flex: 1;
+
+                        textarea#replyContent {
+                            border: 0;
+                            outline: 0;
+                            resize: none;
+                            height: 100px;
+                            width: 100%;
+                            background: #000;
+                            color: #d6d9db;
+                        }
+                    }
+
+
+                    .reply_img_container {
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        gap: 10px;
+                        width: 100%;
+                        margin-bottom: 25px;
+
+                        .img {
+                            position: relative;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 10px;
+                                object-fit: cover;
+                            }
+
+                            span#cls_btn {
+                                position: absolute;
+                                right: 16px;
+                                top: 6px;
+                                background: #52565A;
+                                color: #FFFFFF;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 30px;
+                                width: 30px;
+                                border-radius: 50%;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .reply_actions {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 9px;
+
+                        label {
+                            cursor: pointer;
+                            height: 32px;
+                            width: 32px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 50%;
+                            transition: 0.5s;
+
+                            &:hover {
+                                background: #031019;
+                            }
+                        }
+
+                        #replyImg {
+                            display: none;
+                        }
+
+                        .replyBtn:disabled {
+                            background: #0E4D78;
+                            padding: 10px 25px;
+                            border: 0;
+                            outline: 0;
+                            color: #7F7F7F;
+                            border-radius: 25px;
+                            font-weight: 500;
+                        }
+
+                        .replyBtn {
+                            padding: 10px 25px;
+                            border: 0;
+                            outline: 0;
+                            background: #1A8CD8;
+                            color: #FFFFFF;
+                            border-radius: 25px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
 }
