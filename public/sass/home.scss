@@ -83,6 +83,7 @@ body {
                     color: #E7E9EA;
                     font-size: 18px;
                     font-weight: 500;
+                    text-decoration: none;
 
                     &:hover {
                         background: #181818;
@@ -490,6 +491,25 @@ body {
 
                 }
 
+                .replyUser {
+                    color: #5e6266;
+
+                    p {
+                        span {
+                            color: #1988d3;
+                        }
+                    }
+                }
+
+                .reply_txt_content {
+                    color: #CED0D1;
+                }
+
+                .relyingUser {
+                    display: none;
+                }
+
+
                 .newTweet_content {
                     color: #CED0D1;
                     margin: 5px 0 20px 0;
@@ -724,6 +744,35 @@ div#replyModal {
                             color: #eff3f4;
                         }
 
+                        .newTweet_images {
+                            margin-top: 15px;
+
+                            .newTweet_img img {
+                                width: 350px;
+                                height: 200px;
+                                border-radius: 5px;
+
+                                img {
+                                    width: 100%;
+                                }
+                            }
+                        }
+
+                        .relyingUser {
+                            display: block;
+
+                            a {
+                                text-decoration: none;
+                                color: #007bff;
+
+                                span {
+                                    color: #6A6F73;
+                                }
+                            }
+
+                        }
+
+
                         .newTweet_footer {
 
                             button {
@@ -752,7 +801,7 @@ div#replyModal {
                         height: 45px;
                         border-radius: 28px;
                         overflow: hidden;
-                        margin-right: 5px;
+                        margin-right: 15px;
 
                         img {
                             width: 100%;

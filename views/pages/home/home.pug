@@ -23,7 +23,7 @@ block bodyContent
             .modal-content
                 .modal-header
                     //- h5#replyModalTitle.modal-title.fs-5 Reply
-                    button.btn-close(type='button', data-dismiss='modal', aria-label='Close' onclick="clearReplyData()")
+                    button.btn-close(type='button', data-dismiss='modal', aria-label='Close' onclick="deleteReplyData()")
                         span(aria-hidden="true") &times
                 .modal-body
                 
@@ -33,7 +33,7 @@ block bodyContent
                             img(src="/uploads/" + user.avatarProfile, alt="")
                         
                         .post_field 
-                            textarea#replyContent(placeholder="Tweet your reply") 
+                            textarea#replyContent(placeholder="Tweet your reply")
 
                             .reply_img_container 
 

@@ -5,8 +5,16 @@ const tweetBtn = document.querySelector("button.tweet_post_btn");
 // Image upload reference
 const imageContainer = document.querySelector(".image_container");
 const imagePostInput = document.querySelector("#imagePost");
-const newTweetContainer = document.querySelector(".newTweetContainer")
+const newTweetContainer = document.querySelector(".newTweetContainer");
+
+// Reply reference
+const txtFieldReplyContent = document.querySelector("textarea#replyContent");
+const replyImageContainer = document.querySelector(".reply_img_container");
+const replyImgInput = document.querySelector("#replyImg");
+const replyBtn = document.querySelector(".replyBtn");
+
 let postedImages = [];
+let replyImages = [];
 
 
 
@@ -15,6 +23,7 @@ function createNewTweet(data) {
 
     let newData = data;
     let reTweetedPost = '';
+    let replyTo = "";
 
     if (data.postData) {
         newData = data.postData;
@@ -27,13 +36,24 @@ function createNewTweet(data) {
     };
 
 
-    const { _id: postId,
+    if (data.replyTo?.tweetedBy?.userName) {
+        replyTo = `
+        <div class="replyUser">
+            <p>Replying to <span>@</span><a href="/profile/${data.replyTo.tweetedBy.userName}">${data.replyTo.tweetedBy.userName}</a>
+            </p>
+        </div>`;
+    }
+
+    const {
+        _id: postId,
         tweetTxtContent,
+        replyTextContent,
         images: tweetImages,
         tweetedBy: { _id, firstName, lastName, userName, avatarProfile },
         createdAt,
         loves,
         retweetUsers,
+        replyTweets
     } = newData;
 
 
@@ -91,16 +111,23 @@ function createNewTweet(data) {
                 <div class="posted_more" data-toggle='tooltip', data-placement='bottom', title='more'><i class="fas fa-ellipsis-h"></i></div>
             </div>
 
+           ${replyTo}
+           <p class="reply_txt_content">${replyTextContent}</p>
+
             <div class="newTweet_content">${tweetTxtContent}</div>
 
             <div class="newTweet_images"></div>
+
+            <div class="relyingUser">
+                <a > <span>Replying to</span>  @${newData.tweetedBy.userName}</a>
+            </div>
 
             <div class="newTweet_footer">
 
                 <button class="reply" data-post='${JSON.stringify(data)}' onclick="replyhandler(event, '${postId}')"  
                 data-toggle="modal" data-target="#replyModal" data-toggle='tooltip', data-placement='bottom', title='Reply' >
                     <i class="fas fa-comment"></i>
-                <span>3</span>
+                <span>${replyTweets.length || ""}</span>
                 </button>
 
                 <button class="retweet ${retweetUsers.includes(user._id) ? "active" : ""}" onclick="retweetHandler(event, '${postId}')"  data-toggle='tooltip', data-placement='bottom', title='Retweet'>
@@ -161,12 +188,26 @@ allPostLoad();
 txtFieldTweetContent.addEventListener("input", function (e) {
     const value = this.value.trim();
 
-    if (value) {
+    if (value || postedImages.length) {
         tweetBtn.removeAttribute("disabled")
     } else {
         tweetBtn.setAttribute("disabled", true);
     }
 })
+
+
+
+// Reply post button enable or disable handle
+txtFieldReplyContent.addEventListener("input", function (e) {
+    const value = this.value.trim();
+
+    if (value || replyImages.length) {
+        replyBtn.removeAttribute("disabled")
+    } else {
+        replyBtn.setAttribute("disabled", true);
+    }
+})
+
 
 
 
@@ -202,7 +243,41 @@ imagePostInput.addEventListener("change", function (e) {
 
 
 
-// Image delete event handle
+// Single or multiple reply images post handle
+replyImgInput.addEventListener("change", function (e) {
+    const files = this.files;
+    replyImages = [];
+
+
+    [...files].forEach(file => {
+        if (!["image/png", "image/jpeg", "image/jpg"].includes(file.type)) return;
+
+        replyBtn.removeAttribute("disabled");
+        replyImages.push(file);
+
+        const fileReader = new FileReader();
+        fileReader.onload = function () {
+
+            const div = document.createElement("div");
+            div.classList.add("img");
+            div.dataset.name = file.name;
+            div.innerHTML = `
+            <span id="cls_btn">
+            <i class="fas fa-times"></i>
+            </span><img>
+            `;
+
+            const img = div.querySelector("img");
+            img.src = fileReader.result;
+            replyImageContainer.appendChild(div)
+        }
+        fileReader.readAsDataURL(file)
+    })
+})
+
+
+
+// Image Container event handle
 imageContainer.addEventListener("click", function (e) {
     const clsBtn = e.target.id === "cls_btn" ? e.target : null;
     if (!clsBtn) return;
@@ -221,6 +296,31 @@ imageContainer.addEventListener("click", function (e) {
         }
     })
 })
+
+
+
+
+// Reply Image Container event handle
+replyImageContainer.addEventListener("click", function (e) {
+
+    const clsBtn = e.target.id === "cls_btn" ? e.target : null;
+    if (!clsBtn) return;
+
+    const imgElement = clsBtn.parentElement;
+    const fileName = imgElement.dataset.name;
+
+    replyImages.forEach((file, i) => {
+        if (fileName === file.name) {
+            replyImages.splice(i, 1);
+            imgElement.remove();
+
+            if (!replyImages.length && !txtFieldReplyContent?.value?.trim()) {
+                replyBtn.setAttribute("disabled", true);
+            }
+        }
+    })
+})
+
 
 
 
@@ -320,22 +420,45 @@ function replyhandler(event, postId) {
     const tweetElement = createNewTweet(postObj);
     modalBody.appendChild(tweetElement);
 
+
+    replyBtn.addEventListener("click", function (e) {
+        const replyTextContent = txtFieldReplyContent.value;
+
+        if (!(replyImages.length || replyTextContent)) return;
+
+        const formData = new FormData();
+        formData.append("replyTextContent", replyTextContent);
+
+        replyImages.forEach((file) => {
+            formData.append(file.name, file)
+        });
+
+
+        const url = `${window.location.origin}/posts/reply/${postId}`
+        fetch(url, {
+            method: "POST",
+            body: formData,
+        }).then(result => result.json())
+            .then(data => {
+
+                if (data._id) {
+                    window.location.reload();
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    })
+
     // $("#replyModal").modal("toggle");
-    console.log(postId)
-    console.log(postObj)
 
-    // const url = `${window.location.origin}/posts/reply/${postId}`
+}
 
-    // fetch(url, {
-    //     method: "POST",
-    // }).then(res => res.json())
-    //     .then(data => {
 
-    //         if (data?.replyUsers?.includes(user._id)) {
-    //             replyBtn.classList.add('active');
-    //         } else {
-    //             replyBtn.classList.remove('active');
-    //         };
-    //         span.innerText = data.replyUsers.length ? data.replyUsers.length : "";
-    //     })
+
+// Delete reply files
+function deleteReplyData() {
+    txtFieldReplyContent.value = "";
+    replyImageContainer.innerHTML = "";
+    replyImgInput.setAttribute("disabled", "");
 }

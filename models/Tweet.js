@@ -7,6 +7,11 @@ const tweetSchema = new mongoose.Schema({
         trim: true,
         default: "",
     },
+    replyTextContent: {
+        type: String,
+        trim: true,
+        default: "",
+    },
     images: [
         {
             type: String
@@ -32,7 +37,18 @@ const tweetSchema = new mongoose.Schema({
     postData: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Tweet",
-    }
+    },
+    replyTo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tweet",
+    },
+    replyTweets: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Tweet",
+        },
+    ],
+
 },
     {
         timestamps: true,

@@ -2,6 +2,7 @@
 const createPost = require('../../controllers/apis/createPost');
 const getPostAll = require('../../controllers/apis/getPostAll');
 const loveHandler = require('../../controllers/apis/loveHandler');
+const replyHandler = require('../../controllers/apis/replyHandler');
 const retweetHandler = require('../../controllers/apis/retweetHandler');
 const uploadTweetImg = require('../../middlewares/apis/uploadTweetImg');
 const signInChecker = require('../../middlewares/common/signinChecker');
@@ -25,6 +26,10 @@ postRoute.put('/love/:id', signInChecker, loveHandler);
 
 // Retweet Route
 postRoute.post('/retweet/:id', signInChecker, retweetHandler);
+
+
+// Reply Route
+postRoute.post('/reply/:id', signInChecker, uploadTweetImg, replyHandler);
 
 
 // Module Export
