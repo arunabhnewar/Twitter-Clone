@@ -1,10 +1,4 @@
-// Tweet text field Reference
-const txtFieldTweetContent = document.querySelector("textarea#tweetContent");
-const tweetBtn = document.querySelector("button.tweet_post_btn");
-
-// Image upload reference
-const imageContainer = document.querySelector(".image_container");
-const imagePostInput = document.querySelector("#imagePost");
+// Reference
 const newTweetContainer = document.querySelector(".newTweetContainer");
 
 // Reply reference
@@ -13,14 +7,26 @@ const replyImageContainer = document.querySelector(".reply_img_container");
 const replyImgInput = document.querySelector("#replyImg");
 const replyBtn = document.querySelector(".replyBtn");
 
-let postedImages = [];
 let replyImages = [];
 
+// All Post loaded
+const allPostLoad = async () => {
+    try {
+        const result = await fetch(`${window.location.origin}/posts/status/${postId}`);
+        const post = await result.json();
+
+        const tweetElement = createNewTweet(post);
+        newTweetContainer.appendChild(tweetElement)
+
+    } catch (error) { }
+}
+
+allPostLoad();
 
 
 // Create new tweet post
 function createNewTweet(data) {
-
+    console.log(data)
     let newData = data;
     let reTweetedPost = '';
     let replyTo = "";
@@ -163,39 +169,6 @@ function createNewTweet(data) {
 }
 
 
-// All Post loaded
-const allPostLoad = async () => {
-    try {
-        const result = await fetch(`${window.location.origin}/posts`);
-        const posts = await result.json();
-
-        if (!posts.length) {
-            return (newTweetContainer.innerHTML = `<h6 class="nonePost_show">Nothing to show</h6>`)
-        };
-
-        posts.forEach(post => {
-            const tweetElement = createNewTweet(post);
-            newTweetContainer.insertAdjacentElement("afterbegin", tweetElement)
-        })
-    } catch (error) { }
-}
-
-allPostLoad();
-
-
-
-// Tweet post button enable or disable handle
-txtFieldTweetContent.addEventListener("input", function (e) {
-    const value = this.value.trim();
-
-    if (value || postedImages.length) {
-        tweetBtn.removeAttribute("disabled")
-    } else {
-        tweetBtn.setAttribute("disabled", true);
-    }
-})
-
-
 
 // Reply post button enable or disable handle
 txtFieldReplyContent.addEventListener("input", function (e) {
@@ -206,39 +179,6 @@ txtFieldReplyContent.addEventListener("input", function (e) {
     } else {
         replyBtn.setAttribute("disabled", true);
     }
-})
-
-
-
-
-// Single or multiple images post handle
-imagePostInput.addEventListener("change", function (e) {
-    const files = this.files;
-
-    [...files].forEach(file => {
-        if (!["image/png", "image/jpeg", "image/jpg"].includes(file.type)) return;
-
-        tweetBtn.removeAttribute("disabled");
-        postedImages.push(file);
-
-        const fileReader = new FileReader();
-        fileReader.onload = function () {
-
-            const div = document.createElement("div");
-            div.classList.add("img");
-            div.dataset.name = file.name;
-            div.innerHTML = `
-            <span id="cls_btn">
-            <i class="fas fa-times"></i>
-            </span><img>
-            `;
-
-            const img = div.querySelector("img");
-            img.src = fileReader.result;
-            imageContainer.appendChild(div)
-        }
-        fileReader.readAsDataURL(file)
-    })
 })
 
 
@@ -277,29 +217,6 @@ replyImgInput.addEventListener("change", function (e) {
 
 
 
-// Image Container event handle
-imageContainer.addEventListener("click", function (e) {
-    const clsBtn = e.target.id === "cls_btn" ? e.target : null;
-    if (!clsBtn) return;
-
-    const imgElement = clsBtn.parentElement;
-    const fileName = imgElement.dataset.name;
-
-    postedImages.forEach((file, i) => {
-        if (fileName === file.name) {
-            postedImages.splice(i, 1);
-            imgElement.remove();
-
-            if (!postedImages.length && !txtFieldTweetContent?.value?.trim()) {
-                tweetBtn.setAttribute("disabled", true);
-            }
-        }
-    })
-})
-
-
-
-
 // Reply Image Container event handle
 replyImageContainer.addEventListener("click", function (e) {
 
@@ -320,94 +237,6 @@ replyImageContainer.addEventListener("click", function (e) {
         }
     })
 })
-
-
-
-
-// Tweet post button event handle
-tweetBtn.addEventListener("click", function () {
-    const tweetTxtContent = txtFieldTweetContent.value;
-
-    if (!(postedImages.length || tweetTxtContent)) return;
-
-    const formData = new FormData();
-    formData.append("tweetTxtContent", tweetTxtContent);
-
-    postedImages.forEach((file) => {
-        formData.append(file.name, file)
-    });
-
-    const url = `${window.location.origin}/posts`
-    fetch(url, {
-        method: "POST",
-        body: formData,
-    }).then(result => result.json())
-        .then(data => {
-            const newPostElement = createNewTweet(data);
-            newTweetContainer.insertAdjacentElement("afterbegin", newPostElement);
-
-            txtFieldTweetContent.value = ""
-            imageContainer.innerHTML = "";
-            tweetBtn.setAttribute("disabled", true);
-            postedImages = [];
-
-        })
-        .catch(err => {
-            console.log(err);
-        })
-})
-
-
-
-// Love handler
-function loveHandler(event, postId) {
-    const loveBtn = event.target;
-    const span = loveBtn.querySelector("span")
-
-
-    const url = `${window.location.origin}/posts/love/${postId}`
-
-    fetch(url, {
-        method: "PUT",
-    }).then(res => res.json())
-        .then(data => {
-
-            if (data.loves.includes(user._id)) {
-                loveBtn.classList.add('lovedIt');
-            } else {
-                loveBtn.classList.remove('lovedIt');
-            };
-            span.innerText = data.loves.length ? data.loves.length : "";
-        })
-}
-
-
-
-
-// Retweet handler
-function retweetHandler(event, postId) {
-    const retweetBtn = event.target;
-    const span = retweetBtn.querySelector("span")
-
-
-    const url = `${window.location.origin}/posts/retweet/${postId}`
-
-    fetch(url, {
-        method: "POST",
-    }).then(res => res.json())
-        .then(data => {
-
-            if (data._id) {
-                window.location.reload()
-            }
-            // if (data?.retweetUsers?.includes(user._id)) {
-            //     retweetBtn.classList.add('active');
-            // } else {
-            //     retweetBtn.classList.remove('active');
-            // };
-            // span.innerText = data.retweetUsers.length ? data.retweetUsers.length : "";
-        })
-}
 
 
 
@@ -458,6 +287,16 @@ function replyhandler(event, postId) {
 
 
 
+// Tweet open in another page
+function openTweet(event, postId) {
+    const targetElement = event.target;
+
+    if (targetElement.localName === "button" || targetElement.localName === "a") return;
+
+    window.location.href = `${window.location.origin}/posts/${postId}`
+}
+
+
 // Delete reply files
 function deleteReplyData() {
     txtFieldReplyContent.value = "";
@@ -466,12 +305,47 @@ function deleteReplyData() {
 }
 
 
+// Love handler
+function loveHandler(event, postId) {
+    const loveBtn = event.target;
+    const span = loveBtn.querySelector("span")
 
-// Tweet open in another page
-function openTweet(event, postId) {
-    const targetElement = event.target;
 
-    if (targetElement.localName === "button" || targetElement.localName === "a") return;
+    const url = `${window.location.origin}/posts/love/${postId}`
 
-    window.location.href = `${window.location.origin}/posts/${postId}`
+    fetch(url, {
+        method: "PUT",
+    }).then(res => res.json())
+        .then(data => {
+
+            if (data.loves.includes(user._id)) {
+                loveBtn.classList.add('lovedIt');
+            } else {
+                loveBtn.classList.remove('lovedIt');
+            };
+            span.innerText = data.loves.length ? data.loves.length : "";
+        })
+}
+
+
+
+
+// Retweet handler
+function retweetHandler(event, postId) {
+    const retweetBtn = event.target;
+    const span = retweetBtn.querySelector("span")
+
+
+    const url = `${window.location.origin}/posts/retweet/${postId}`
+
+    fetch(url, {
+        method: "POST",
+    }).then(res => res.json())
+        .then(data => {
+
+            if (data._id) {
+                window.location.reload()
+            }
+
+        })
 }

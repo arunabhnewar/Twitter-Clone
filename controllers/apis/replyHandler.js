@@ -9,7 +9,6 @@ const replyHandler = async (req, res, next) => {
         const postId = req.params.id;
         const userId = req.id;
         const files = req.files;
-        // const content = req.body.content;
         const replyTextContent = req.body.replyTextContent;
 
         const postData = {

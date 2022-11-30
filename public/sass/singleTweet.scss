@@ -229,7 +229,7 @@ body {
     flex: 1;
     // overflow-y: hidden visible;
 
-    .mid_heading_content {
+    .mid_heading_container {
         display: flex;
         height: 50px;
         border-bottom: 1px solid #2f3336;
@@ -239,7 +239,7 @@ body {
         background: #010507;
         align-items: center;
         width: 600px;
-        justify-content: space-between;
+        // justify-content: space-between;
         border-left: 1px solid #2F3336;
         border-right: 1px solid #2F3336;
 
@@ -247,6 +247,7 @@ body {
             font-size: 20px;
             font-weight: 500;
             color: #E7E9EA;
+            cursor: pointer;
         }
 
         span {
@@ -425,7 +426,7 @@ body {
             border-bottom: 1px solid #2F3336;
             border-right: 1px solid #2F3336;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 64px;
 
             .avatar_image {
                 width: 60px;
