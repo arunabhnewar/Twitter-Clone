@@ -9,6 +9,8 @@ const replyBtn = document.querySelector(".replyBtn");
 
 let replyImages = [];
 
+
+
 // All Post loaded
 const allPostLoad = async () => {
     try {
@@ -16,12 +18,18 @@ const allPostLoad = async () => {
         const post = await result.json();
 
         const tweetElement = createNewTweet(post);
-        newTweetContainer.appendChild(tweetElement)
+        newTweetContainer.appendChild(tweetElement);
+
+        post.replyTweets?.forEach(pst => {
+            const tweetElement = createNewTweet(pst);
+            newTweetContainer.appendChild(tweetElement);
+        })
 
     } catch (error) { }
 }
 
 allPostLoad();
+
 
 
 // Create new tweet post
@@ -124,9 +132,10 @@ function createNewTweet(data) {
 
             <div class="newTweet_images"></div>
 
-            <div class="relyingUser">
-                <a > <span>Replying to</span>  @${newData.tweetedBy.userName}</a>
+            <div class="replyingUser">
+                <a > <span>Replying to</span>  @${userName}</a>
             </div>
+
 
             <div class="newTweet_footer">
 

@@ -118,8 +118,8 @@ function createNewTweet(data) {
 
             <div class="newTweet_images"></div>
 
-            <div class="relyingUser">
-                <a > <span>Replying to</span>  @${newData.tweetedBy.userName}</a>
+            <div class="replyingUser">
+                <a > <span>Replying to</span>  @${userName}</a>
             </div>
 
             <div class="newTweet_footer">

@@ -224,10 +224,9 @@ body {
 
 //=========== Mid side container ============//
 .mid_side_container {
-    border-left: 1px solid #2F3336;
     height: auto;
     flex: 1;
-    // overflow-y: hidden visible;
+
 
     .mid_heading_content {
         display: flex;
@@ -386,6 +385,7 @@ body {
 
     .newTweetContainer {
         border-left: 1px solid #2F3336;
+        border-right: 1px solid #2f3336;
 
         p.reTweeted_post {
             display: flex;
@@ -423,7 +423,6 @@ body {
             display: flex;
             padding: 5px 11px;
             border-bottom: 1px solid #2F3336;
-            border-right: 1px solid #2F3336;
             cursor: pointer;
             margin-top: 10px;
 
@@ -507,10 +506,6 @@ body {
                     color: #CED0D1;
                 }
 
-                .relyingUser {
-                    display: none;
-                }
-
 
                 .newTweet_content {
                     color: #CED0D1;
@@ -533,6 +528,10 @@ body {
                             object-fit: cover;
                         }
                     }
+                }
+
+                .replyingUser {
+                    display: none;
                 }
 
                 .newTweet_footer {
@@ -643,7 +642,6 @@ body {
 
 //=========== Right side container ============//
 .right_side_container {
-    background: #6A150D;
     height: 100vh;
     flex-basis: 350px;
 }
@@ -761,7 +759,15 @@ div#replyModal {
                             }
                         }
 
-                        .relyingUser {
+                        .replyUser {
+                            display: none;
+                        }
+
+                        p.reply_txt_content {
+                            color: #eff3f4;
+                        }
+
+                        .replyingUser {
                             display: block;
 
                             a {

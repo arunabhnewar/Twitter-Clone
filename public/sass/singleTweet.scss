@@ -387,6 +387,7 @@ body {
 
     .newTweetContainer {
         border-left: 1px solid #2F3336;
+        margin-top: 64px;
 
         p.reTweeted_post {
             display: flex;
@@ -426,7 +427,7 @@ body {
             border-bottom: 1px solid #2F3336;
             border-right: 1px solid #2F3336;
             cursor: pointer;
-            margin-top: 64px;
+
 
             .avatar_image {
                 width: 60px;
@@ -508,7 +509,7 @@ body {
                     color: #CED0D1;
                 }
 
-                .relyingUser {
+                .replyingUser {
                     display: none;
                 }
 
@@ -744,6 +745,8 @@ div#replyModal {
                             }
                         }
 
+
+
                         .newTweet_content {
                             color: #eff3f4;
                         }
@@ -762,7 +765,15 @@ div#replyModal {
                             }
                         }
 
-                        .relyingUser {
+                        .replyUser {
+                            display: none;
+                        }
+
+                        p.reply_txt_content {
+                            color: #eff3f4;
+                        }
+
+                        .replyingUser {
                             display: block;
 
                             a {
@@ -775,6 +786,21 @@ div#replyModal {
                             }
 
                         }
+
+
+                        // .replyingUser {
+                        //     display: block;
+
+                        //     a {
+                        //         text-decoration: none;
+                        //         color: #007bff;
+
+                        //         span {
+                        //             color: #6A6F73;
+                        //         }
+                        //     }
+
+                        // }
 
 
                         .newTweet_footer {
