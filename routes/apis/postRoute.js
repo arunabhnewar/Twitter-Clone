@@ -2,6 +2,7 @@
 const createPost = require('../../controllers/apis/createPost');
 const getPostAll = require('../../controllers/apis/getPostAll');
 const loveHandler = require('../../controllers/apis/loveHandler');
+const removeTweet = require('../../controllers/apis/removeTweet');
 const replyHandler = require('../../controllers/apis/replyHandler');
 const retweetHandler = require('../../controllers/apis/retweetHandler');
 const singleTweetController = require('../../controllers/apis/singleTweetController');
@@ -37,6 +38,10 @@ postRoute.post('/retweet/:id', signInChecker, retweetHandler);
 
 // Reply Route
 postRoute.post('/reply/:id', signInChecker, uploadTweetImg, replyHandler);
+
+
+// Delete Tweet
+postRoute.delete('/:postId', signInChecker, removeTweet);
 
 
 // Module Export

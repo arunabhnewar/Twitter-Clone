@@ -52,6 +52,7 @@ body {
 
                 &:hover {
                     background: #141e25;
+                    text-decoration: none;
                 }
 
                 i.fab.fa-twitter {
@@ -137,6 +138,7 @@ body {
     .bottom_left_section {
         width: 100%;
         flex-basis: 60px;
+        position: relative;
 
         .user_info {
             display: flex;
@@ -184,41 +186,43 @@ body {
             }
         }
     }
-}
 
-.modall {
-    display: block;
-    position: fixed;
-    z-index: 1;
-    top: 73%;
-    left: 13%;
+    .modall {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 73%;
+        left: 13%;
 
-    .modall-content {
-        background-color: #000000;
-        margin: auto;
-        padding: 5px;
-        border: 0;
-        width: 220px;
-        box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
-        border-radius: 5px;
+        .modall-content {
+            background-color: #000000;
+            margin: auto;
+            padding: 5px;
+            border: 0;
+            width: 220px;
+            box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+            border-radius: 5px;
 
-        p {
-            padding: 5px 20px;
-            transition: 0.5s;
+            p {
+                padding: 5px 20px;
+                transition: 0.5s;
 
-            &:hover {
-                background: #16181C;
-                border-radius: 5px;
-            }
+                &:hover {
+                    background: #16181C;
+                    border-radius: 5px;
+                }
 
-            a {
-                color: #DCDEDF;
-                font-weight: 300;
-                font-size: 14px;
+                a {
+                    color: #DCDEDF;
+                    font-weight: 300;
+                    font-size: 14px;
+                }
             }
         }
     }
 }
+
+
 
 
 
@@ -305,16 +309,10 @@ body {
                 gap: 10px;
                 width: 100%;
                 margin-bottom: 25px;
+                max-height: 450px;
 
                 .img {
                     position: relative;
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 10px;
-                        object-fit: cover;
-                    }
 
                     span#cls_btn {
                         position: absolute;
@@ -332,6 +330,17 @@ body {
                     }
                 }
 
+                .img img {
+                    width: 100%;
+                    height: 400px;
+                    border-radius: 10px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
             }
 
             .action_section {
@@ -472,21 +481,44 @@ body {
                     }
 
 
-                    .posted_more {
-                        color: #5E6266;
-                        cursor: pointer;
+                    div.dropleft {
+                        .posted_more {
+                            color: #5E6266;
+                            cursor: pointer;
+                            background: transparent;
+                            height: 35px;
+                            width: 35px;
+                            border-radius: 50%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            transition: 0.5s;
 
-                        height: 35px;
-                        width: 35px;
-                        border-radius: 50%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        transition: 0.5s;
+                            &:hover {
+                                background: #0A1720;
+                                color: #29A0F0;
+                            }
+                        }
 
-                        &:hover {
-                            background: #0A1720;
-                            color: #29A0F0;
+                        .dropdown-menu {
+                            background-color: #000;
+                            box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+                            border-radius: 5px;
+
+                            a.dropdown-item {
+                                transition: 0.5s;
+
+                                &:hover {
+                                    background: #16181C;
+                                }
+
+                                button.remove_btn {
+                                    border: 0;
+                                    outline: 0;
+                                    background: transparent;
+                                    color: #dcdedf;
+                                }
+                            }
                         }
                     }
 
@@ -517,9 +549,11 @@ body {
                     grid-template-columns: auto auto;
                     gap: 10px;
                     width: 100%;
-                    margin-bottom: 5px;
+
 
                     .newTweet_img {
+                        width: 100%;
+                        height: 100%;
 
                         img {
                             width: 100%;
@@ -704,9 +738,8 @@ div#replyModal {
                         }
                     }
 
-
                     .newTweet_body {
-
+                        width: 100%;
 
                         .newTweet_header {
                             display: flex;
@@ -718,7 +751,7 @@ div#replyModal {
 
                                 a {
                                     color: #eff3f4;
-                                    cursor: none;
+
 
                                     &:hover {
                                         text-decoration: none;
@@ -745,16 +778,42 @@ div#replyModal {
                             color: #eff3f4;
                         }
 
-                        .newTweet_images {
-                            margin-top: 15px;
+                        // .newTweet_images {
+                        //     margin-top: 15px;
+                        //     display: grid;
+                        //     grid-template-columns: auto auto;
+                        //     gap: 10px;
+                        //     max-height: 225px;
+                        //     width: 100%;
 
-                            .newTweet_img img {
-                                width: 350px;
-                                height: 200px;
-                                border-radius: 5px;
+                        //     .newTweet_img {
+                        //         width: 100%;
+                        //         height: 75%;
+                        //         border-radius: 10px;
+
+                        //         img {
+                        //             width: 100%;
+                        //             height: 100%;
+                        //             object-fit: cover;
+                        //         }
+                        //     }
+                        // }
+                        .newTweet_images {
+                            display: grid;
+                            grid-template-columns: auto auto;
+                            gap: 10px;
+                            width: 100%;
+
+
+                            .newTweet_img {
+                                width: 100%;
+                                height: 100%;
 
                                 img {
                                     width: 100%;
+                                    height: 100%;
+                                    border-radius: 10px;
+                                    object-fit: cover;
                                 }
                             }
                         }
@@ -917,5 +976,17 @@ div#replyModal {
 
             }
         }
+    }
+}
+
+
+
+// Sweet Alert
+
+.swal2-container.swal2-center.swal2-backdrop-show {
+    background: rgba(91, 112, 131, .4);
+
+    .swal2-popup.swal2-modal.swal2-icon-warning.swal2-show {
+        background: #000;
     }
 }
