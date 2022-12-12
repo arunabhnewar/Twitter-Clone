@@ -7,14 +7,15 @@ block title
 
 
 block cssLink
-    link(rel="stylesheet", href="/css/singleTweet.css")
+    link(rel="stylesheet", href="/css/profile.css")
+    link(rel="stylesheet", href="/css/home.css")
 
 
 
 block jsScript
-    script(src="/js/singleTweet.js" defer) 
+    script(src="/js/app.js" defer) 
+    script(src="/js/profile.js" defer) 
     script(src="/js/modal.js" defer) 
-
 
 
 block bodyContent
@@ -158,11 +159,55 @@ block bodyContent
                     svg.bi.bi-arrow-left(xmlns='http://www.w3.org/2000/svg', width='22', height='22', fill='currentColor', viewbox='0 0 16 16')
                         path(fill='#E7E9EA', d='M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z')
 
-                h4 Tweet 
-                
+                h4 #{user.firstName} #{user.lastName}
 
+            if userProfile !== null
+
+                .profile_header_container
+                    .cover_image 
+                        img(src="/uploads/cover.jpg", alt="") 
+
+                    .profile_avatar 
+                        img(src="/uploads/" + userProfile.avatarProfile, alt="")
+
+                .profile_actions
+                    if user.userName !== userProfile.userName 
+                        a.message
+                            svg.bi.bi-envelope(xmlns='http://www.w3.org/2000/svg', width='16', height='16', fill='currentColor', viewbox='0 0 16 16')
+                                path(d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z')
+
+                        button.follow_btn Follow
+
+                    else  
+                        button.edit_profile Edit profile 
+
+                .profile_details 
+
+                    h4.pro_fullName #{userProfile.firstName + " " + userProfile.lastName}
+                    h6.pro_userName @#{userProfile.userName}
+
+                    .social_influences 
+                        a.following(href="/profile/"+userProfile.userName +"/following")
+                            
+                            span 0 
+                            | Following
+
+                        a.followers(href="/profile/"+userProfile.userName +"/followers")
+                            
+                            span 0 
+                            | Followers
+
+                .tabs_container 
+                    a.tweets_tab(class=tab === "tweets" ? "active" : "" href=`/profile/` + userProfile.userName)
+                        button Tweets
+
+                    a.replies_tab(class=tab === "replies" ? "active" : "" href="/profile/" + userProfile.userName + "/replies") 
+                        button Replies
            
-            .newTweetContainer 
+                .newTweetContainer 
+
+            else 
+                h4 User fucked up
 
             
         .right_side_container
@@ -170,4 +215,5 @@ block bodyContent
 
     script. 
         const user = !{userFrontendJs}
-        const postId = "!{postId}"
+        const profileUser = !{profileUserJs}
+        const tab = '!{tab}'

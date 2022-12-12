@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const authRouter = require('./routes/auth/authRoute');
 const homeRouter = require('./routes/home/homeRoute');
 const postRoute = require('./routes/apis/postRoute');
+const profileRoute = require('./routes/profile/profileRoute');
 
 
 // App Initialization and Config
@@ -32,8 +33,9 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(authRouter);  //Authentication Route
 
 
-app.use('/', homeRouter); //Home Route
-app.use("/posts", postRoute);
+app.use('/', homeRouter);      //Home Route
+app.use("/posts", postRoute);   //Post Route
+app.use("/profile", profileRoute)   //Profile Route
 
 
 // Not Found Handler

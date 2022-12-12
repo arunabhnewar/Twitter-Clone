@@ -1,0 +1,197 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background: #000000;
+}
+
+#main_section {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+
+.mid_side_container {
+
+    .mid_heading_container {
+        display: flex;
+        height: 50px;
+        border-bottom: 1px solid #2f3336;
+        padding: 15px;
+        z-index: 3;
+        position: fixed;
+        background: #010507;
+        align-items: center;
+        width: 600px;
+        border-left: 1px solid #2F3336;
+        border-right: 1px solid #2F3336;
+
+        h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #E7E9EA;
+            margin-left: 20px;
+        }
+    }
+
+
+    .profile_header_container {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+
+        .cover_image {
+            margin-top: 50px;
+            cursor: pointer;
+        }
+
+
+        .profile_avatar img {
+            width: 150px;
+            height: 150px;
+            border: 4px solid #000000;
+            border-radius: 50%;
+            position: absolute;
+            top: 126px;
+            left: 10px;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .profile_actions {
+        display: flex;
+        justify-content: flex-end;
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+
+        button.edit_profile {
+            margin-top: 15px;
+            width: 120px;
+            height: 40px;
+            border-radius: 25px;
+            background: transparent;
+            color: #EFF3F4;
+            border: 1px solid #EFF3F4;
+            margin-right: 10px;
+        }
+
+        button.follow_btn {
+            margin-top: 15px;
+            width: 120px;
+            height: 40px;
+            border-radius: 25px;
+            background: transparent;
+            color: #EFF3F4;
+            border: 1px solid #EFF3F4;
+            margin-right: 10px;
+        }
+    }
+
+    .profile_details {
+        padding-top: 25px;
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+
+        h4.pro_fullName {
+            color: #EFF3F4;
+            margin-left: 10px;
+
+        }
+
+        h6.pro_userName {
+            color: #565A5E;
+            margin-left: 10px;
+        }
+    }
+
+    .social_influences {
+        margin-top: 20px;
+        margin-left: 10px;
+
+        a.following {
+            color: #565A5E;
+            margin-right: 25px;
+            text-decoration: none;
+
+            span {
+                color: #EFF3F4;
+                font-weight: 700;
+            }
+        }
+
+        a.followers {
+            color: #565A5E;
+            margin-right: 25px;
+            text-decoration: none;
+
+            span {
+                color: #EFF3F4;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .tabs_container {
+        padding-top: 20px;
+        justify-content: space-around;
+        display: flex;
+        border-bottom: 1px solid #2F3336;
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+
+        a.tweets_tab {
+
+            button {
+                background: transparent;
+                color: #EFF3F4;
+                transition: 0.5s;
+                width: 250px;
+                height: 35px;
+
+                &:hover {
+                    background: #181818;
+                    border-bottom: 2px solid #1D9BF0;
+                }
+            }
+        }
+
+        a.replies_tab {
+
+            button {
+                background: transparent;
+                color: #EFF3F4;
+                transition: 0.5s;
+                width: 250px;
+                height: 35px;
+
+                &:hover {
+                    background: #181818;
+                    border-bottom: 2px solid #1D9BF0;
+                }
+            }
+        }
+    }
+}

@@ -1,8 +1,4 @@
 
-
-
-
-
 // Create new tweet post
 function createNewTweet(data) {
 
@@ -99,7 +95,7 @@ function createNewTweet(data) {
         <div class="newTweet_body">
             <div class="newTweet_header">
                 <div class="header_items">
-                    <a href="/uploads/${userName}" class="show_name"> ${firstName + " " + lastName} </a>
+                    <a href="/profile/${userName}" class="show_name"> ${firstName + " " + lastName} </a>
                     <span class="show_username"> @${userName} .</span>
                     <div class="timeAgo">${timeAgo}</div>
                 </div>

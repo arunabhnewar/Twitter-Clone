@@ -52,6 +52,7 @@ body {
 
                 &:hover {
                     background: #141e25;
+                    text-decoration: none;
                 }
 
                 i.fab.fa-twitter {
@@ -224,10 +225,8 @@ body {
 
 //=========== Mid side container ============//
 .mid_side_container {
-    border-left: 1px solid #2F3336;
     height: auto;
     flex: 1;
-    // overflow-y: hidden visible;
 
     .mid_heading_container {
         display: flex;
@@ -239,7 +238,6 @@ body {
         background: #010507;
         align-items: center;
         width: 600px;
-        // justify-content: space-between;
         border-left: 1px solid #2F3336;
         border-right: 1px solid #2F3336;
 
@@ -671,7 +669,7 @@ body {
 
 //=========== Right side container ============//
 .right_side_container {
-    background: #6A150D;
+    // background: #6A150D;
     height: 100vh;
     flex-basis: 350px;
 }
