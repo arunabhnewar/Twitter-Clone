@@ -11,6 +11,15 @@ const getPostAll = async (req, res, next) => {
 
         req.query.replyTo && (filterObj.replyTo = req.query?.replyTo == "false" ? { $exists: false } : { $exists: true });
 
+        const user = await User.findOne({ _id: req.id });
+
+        user.following = user.following || [];
+
+        const followingUsers = [...user.following];
+        followingUsers.push(user._id)
+
+        req.query.followingOnly && req.query.followingOnly == "true" && (filterObj.tweetedBy = { $in: followingUsers });
+
         const result = await Tweet.find(filterObj);
         await User.populate(result, { path: "tweetedBy", select: "-password" });
 

@@ -216,3 +216,33 @@ const allPostLoad = async () => {
 }
 
 allPostLoad();
+
+
+function followHandler(e, userId) {
+    const url = `${window.location.origin}/profile/${userId}/follow`;
+    fetch(url, {
+        method: "PUT",
+    }).then(res => res.json())
+        .then(data => {
+
+            followBtn = e.target;
+            const isFollowing = data.followers.includes(user._id);
+
+            const following = document.querySelector("a.following span");
+            const followers = document.querySelector("a.followers span");
+
+            if (isFollowing) {
+                followBtn.classList.add("active");
+                followBtn.textContent = "Following";
+                followers.textContent = data.followers?.length;
+                following.textContent = data.following?.length;
+            }
+            else {
+                followBtn.classList.remove("active");
+                followBtn.textContent = "Follow";
+                followers.textContent = data.followers?.length;
+                following.textContent = data.following?.length;
+            }
+
+        })
+}
