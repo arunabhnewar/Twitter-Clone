@@ -79,8 +79,9 @@ function createNewTweet(data) {
 
     const timeAgo = timeSince(new Date(createdAt).getTime());
 
-    const div = document.createElement("div");
+    const avatarUrl = avatarProfile ? `/uploads/${_id}/${avatarProfile}` : `/uploads/avatar.png`;
 
+    const div = document.createElement("div");
     div.innerHTML = `
     
     ${reTweetedPost}
@@ -88,7 +89,7 @@ function createNewTweet(data) {
     <div class="newTweet" onclick="openTweet(event, '${postId}')">
         <div class="avatar_image">
             <div class="image">
-            <img class="avatar" src="${window.location.origin}/uploads/${avatarProfile}"  />
+            <img class="avatar" src="${avatarUrl}"  />
             </div>
         </div>
 

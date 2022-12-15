@@ -27,10 +27,13 @@ block bodyContent
                         span(aria-hidden="true") &times
                 .modal-body
                 
+                - avatarUrl = user.avatarProfile ? `/uploads/${user._id}/${user.avatarProfile}` : `/uploads/avatar.png`;
+
                 .modal-footer
                     .create_post 
                         .reply_avatar
-                            img(src="/uploads/" + user.avatarProfile, alt="")
+                            //- img(src="/uploads/" + user.avatarProfile, alt="")
+                            img(src=avatarUrl, alt="")
                         
                         .post_field 
                             textarea#replyContent(placeholder="Tweet your reply")
@@ -131,7 +134,8 @@ block bodyContent
 
                 .user_info 
                     .avatar_profile 
-                        img(src="/uploads/" + user.avatarProfile, alt="")
+                        //- img(src="/uploads/" + user.avatarProfile, alt="")
+                        img(src=avatarUrl, alt="")
 
                     .name_info 
                         h6 #{user.firstName}  #{user.lastName}

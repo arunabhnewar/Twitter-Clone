@@ -5,9 +5,12 @@ const path = require('path')
 
 function avatarUpload(req, res, next) {
     // Directory
-    const uploadDirectory = path.join(__dirname, '/../../public/uploads');
+    // const uploadDirectory = path.join(__dirname, '/../../public/uploads');
+    const uploadDirectory = path.join(__dirname, '/../../temp/');
+
     // File Size
     const maxFileSize = 10000000;
+
     // File Type
     const allowedMimeType = ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml'];
 

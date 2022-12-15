@@ -27,10 +27,13 @@ block bodyContent
                         span(aria-hidden="true") &times
                 .modal-body
                 
+                - avatarUrl = user.avatarProfile ? `/uploads/${user._id}/${user.avatarProfile}` : `/uploads/avatar.png`;
+
                 .modal-footer
                     .create_post 
                         .reply_avatar
-                            img(src="/uploads/" + user.avatarProfile, alt="")
+                            //- img(src="/uploads/" + user.avatarProfile, alt="")
+                            img(src=avatarUrl, alt="")
                         
                         .post_field 
                             textarea#replyContent(placeholder="Tweet your reply")
@@ -131,7 +134,8 @@ block bodyContent
 
                 .user_info 
                     .avatar_profile 
-                        img(src="/uploads/" + user.avatarProfile, alt="")
+                        //- img(src="/uploads/" + user.avatarProfile, alt="")
+                        img(src=avatarUrl, alt="")
 
                     .name_info 
                         h6 #{user.firstName}  #{user.lastName}
@@ -160,6 +164,8 @@ block bodyContent
 
                 h4 #{user.firstName} #{user.lastName}
 
+            - avatarURL= userProfile.avatarProfile ? `/uploads/${user._id}/${userProfile.avatarProfile}`: `/uploads/avatar.png`;
+
             if userProfile !== null
 
                 .profile_header_container
@@ -167,7 +173,8 @@ block bodyContent
                         img(src="/uploads/cover.jpg", alt="") 
 
                     .profile_avatar 
-                        img(src="/uploads/" + userProfile.avatarProfile, alt="")
+                        //- img(src="/uploads/" + userProfile.avatarProfile, alt="")
+                        img(src=avatarURL, alt="")
 
                 .profile_actions
                     if user.userName !== userProfile.userName 

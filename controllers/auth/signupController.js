@@ -3,6 +3,7 @@ const createHttpError = require("http-errors");
 const User = require("../../models/User");
 const hashString = require("../../utilities/hashString");
 const sendEmail = require("../../utilities/sendEmail");
+const fs = require('fs');
 
 // Post Sign Up Page Controller
 const signupController = async (req, res, next) => {
@@ -22,7 +23,8 @@ const signupController = async (req, res, next) => {
         const userName = req.body.userName;
         const email = req.body.email;
         const password = await hashString(req.body.password);
-        const avatarProfile = req.file?.filename || "avatar.png";
+        // const avatarProfile = req.file?.filename || "avatar.png";
+        const avatarProfile = req.file?.filename || "";
 
         const userObject = User({
             firstName,
@@ -38,6 +40,10 @@ const signupController = async (req, res, next) => {
 
         });
         const user = await userObject.save();
+
+        if (avatarProfile) {
+            fs.renameSync(__dirname + `/../../temp/${avatarProfile}`, __dirname + `./../../public/uploads/${user._id}/${avatarProfile}`)
+        }
 
         if (user._id) {
             sendEmail(

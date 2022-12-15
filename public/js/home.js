@@ -22,6 +22,7 @@ let replyImages = [];
 const allPostLoad = async () => {
     try {
         const result = await fetch(`${window.location.origin}/posts?followingOnly=true`);
+        // const result = await fetch(`${window.location.origin}/posts`);
         const posts = await result.json();
 
         if (!posts.length) {
