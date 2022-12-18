@@ -79,7 +79,7 @@ function createNewTweet(data) {
 
     const timeAgo = timeSince(new Date(createdAt).getTime());
 
-    const avatarUrl = avatarProfile ? `/uploads/${_id}/${avatarProfile}` : `/uploads/avatar.png`;
+    const avatarUrl = avatarProfile ? `/uploads/${avatarProfile}` : `/uploads/avatar.png`;
 
     const div = document.createElement("div");
     div.innerHTML = `

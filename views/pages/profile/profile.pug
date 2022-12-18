@@ -9,6 +9,7 @@ block title
 block cssLink
     link(rel="stylesheet", href="/css/profile.css")
     link(rel="stylesheet", href="/css/home.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css")
 
 
 
@@ -28,7 +29,7 @@ block bodyContent
                         span(aria-hidden="true") &times
                 .modal-body
                 
-                - avatarUrl = user.avatarProfile ? `/uploads/${user._id}/${user.avatarProfile}` : `/uploads/avatar.png`;
+                - avatarUrl = user.avatarProfile ? `/uploads/${user.avatarProfile}` : `/uploads/avatar.png`;
 
                 .modal-footer
                     .create_post 
@@ -50,6 +51,44 @@ block bodyContent
                                 input#replyImg(type="file" multiple)
 
                                 button.replyBtn(disabled ="") Reply
+
+    #avatarUpdateModal.modal.fade(tabindex='-1' role="dialog" aria-labelledby='avatarUpdateModalTitle', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#avatarUpdateModalTitle.modal-title Update Profile Avatar 
+
+                    button.btn-close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden="true") &times
+
+                .modal-body
+                    input#updateInputAvatar(type="file")
+                    #previewAvatarContainer 
+                        img#previewAvatar
+
+                .modal-footer
+                    button.btn.avatarUpdateCloseBtn(type="button" data-dismiss="modal") Close 
+
+                    button#saveAvatarImage.btn.avatarUpdateSaveBtn(type="button") Save
+
+    #coverUpdateModal.modal.fade(tabindex='-1' role="dialog" aria-labelledby='coverUpdateModalTitle', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#coverUpdateModalTitle.modal-title Update Cover Image 
+
+                    button.btn-close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden="true") &times
+
+                .modal-body
+                    input#updateInputCover(type="file")
+                    #previewCoverContainer 
+                        img#previewCover
+
+                .modal-footer
+                    button.btn.coverUpdateCloseBtn(type="button" data-dismiss="modal") Close 
+
+                    button#saveCoverImage.btn.coverUpdateSaveBtn(type="button") Save
 
     main#main_section
 
@@ -155,27 +194,49 @@ block bodyContent
                     p.mb-2 
                         a(href="/signout") Sign out @#{user.userName}
 
-
         .mid_side_container 
-
-            .mid_heading_container 
-                a(href='/')
-                    svg.bi.bi-arrow-left(xmlns='http://www.w3.org/2000/svg', width='22', height='22', fill='currentColor', viewbox='0 0 16 16')
-                        path(fill='#E7E9EA', d='M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z')
-
-                h4 #{user.firstName} #{user.lastName}
-
-            - avatarURL= userProfile.avatarProfile ? `/uploads/${user._id}/${userProfile.avatarProfile}`: `/uploads/avatar.png`;
-
             if userProfile !== null
+                .mid_side_header
+                    .mid_heading_container 
+                        a(href='/')
+                            svg.bi.bi-arrow-left(xmlns='http://www.w3.org/2000/svg', width='22', height='22', fill='currentColor', viewbox='0 0 16 16')
+                                path(fill='#E7E9EA', d='M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z')
+
+                        h4 #{userProfile.firstName} #{userProfile.lastName}
+             
+                    h6.totalTweetsCount #{userAllTweets.length} 
+                        span Tweets         
 
                 .profile_header_container
+
                     .cover_image 
-                        //- img(src="/uploads/" + userProfile.avatarProfile, alt="")
-                        img(src="/uploads/cover.jpg", alt="") 
+                        - coverURL= userProfile.coverProfile ? `/uploads/${userProfile.coverProfile}`: `/uploads/cover.jpg`;
+
+                        img(src=coverURL, alt="") 
+                        //- img(src="/uploads/cover.jpg", alt="") 
+
+                        if userProfile.userName === user.userName
+              
+                            button.uploadCoverImage(data-toggle="modal" data-target="#coverUpdateModal")
+                                svg.bi.bi-camera(xmlns='http://www.w3.org/2000/svg', width='22', height='22', fill='currentColor', viewbox='0 0 16 16')
+                                    path(fill="#565a5e" d='M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z')
+                                    path(fill="#565a5e" d='M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z')
+
+
+                        
 
                     .profile_avatar 
+                        - avatarURL= userProfile.avatarProfile ? `/uploads/${userProfile.avatarProfile}`: `/uploads/avatar.png`;
+
                         img(src=avatarURL, alt="")
+                        //- img(src="/uploads/" + userProfile.avatarProfile, alt="")
+
+                        if userProfile.userName === user.userName
+              
+                            button.uploadImage(data-toggle="modal" data-target="#avatarUpdateModal")
+                                svg.bi.bi-camera(xmlns='http://www.w3.org/2000/svg', width='22', height='22', fill='currentColor', viewbox='0 0 16 16')
+                                    path(fill="#565a5e" d='M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z')
+                                    path(fill="#565a5e" d='M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z')
 
                 .profile_actions
                     if user.userName !== userProfile.userName 
@@ -223,6 +284,7 @@ block bodyContent
             
         .right_side_container
     
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js") 
 
     script. 
         const user = !{userFrontendJs}

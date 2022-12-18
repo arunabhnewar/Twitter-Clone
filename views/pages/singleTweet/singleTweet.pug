@@ -27,7 +27,7 @@ block bodyContent
                         span(aria-hidden="true") &times
                 .modal-body
                 
-                - avatarUrl = user.avatarProfile ? `/uploads/${user._id}/${user.avatarProfile}` : `/uploads/avatar.png`;
+                - avatarUrl = user.avatarProfile ? `/uploads/${user.avatarProfile}` : `/uploads/avatar.png`;
 
                 .modal-footer
                     .create_post 

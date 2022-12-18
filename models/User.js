@@ -46,6 +46,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    coverProfile: {
+        type: String,
+        required: true,
+    },
     status: {
         type: String,
         enum: ["unverified", "verified", "suspended"],

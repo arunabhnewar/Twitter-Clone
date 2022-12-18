@@ -1,16 +1,19 @@
 // Dependencies
 const createHttpError = require("http-errors");
 const User = require("../../models/User");
+const Tweet = require("../../models/Tweet");
 
 const getReplies = async (req, res, next) => {
     try {
         const user = await User.findOne({ userName: req.userName }, { password: 0 });
         const userProfile = await User.findOne({ userName: req.params.userName }, { password: 0 });
 
-        const userFrontendJs = JSON.stringify(user)
-        const profileUserJs = JSON.stringify(userProfile)
+        const userAllTweets = await Tweet.find({ tweetedBy: userProfile._id });
 
-        return res.render('pages/profile/profile', { user: user ? user : {}, userFrontendJs, userProfile, profileUserJs, tab: "replies" });
+        const userFrontendJs = JSON.stringify(user);
+        const profileUserJs = JSON.stringify(userProfile);
+
+        return res.render('pages/profile/profile', { user: user ? user : {}, userFrontendJs, userAllTweets, userProfile, profileUserJs, tab: "replies" });
 
     } catch (error) {
         next(createHttpError(500, "Sorry, internal server error!!"))

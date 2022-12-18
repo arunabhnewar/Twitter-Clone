@@ -25,6 +25,7 @@ const signupController = async (req, res, next) => {
         const password = await hashString(req.body.password);
         // const avatarProfile = req.file?.filename || "avatar.png";
         const avatarProfile = req.file?.filename || "";
+        const coverProfile = req.file?.filename || "";
 
         const userObject = User({
             firstName,
@@ -42,7 +43,11 @@ const signupController = async (req, res, next) => {
         const user = await userObject.save();
 
         if (avatarProfile) {
-            fs.renameSync(__dirname + `/../../temp/${avatarProfile}`, __dirname + `./../../public/uploads/${user._id}/${avatarProfile}`)
+            fs.renameSync(__dirname + `/../../temp/${avatarProfile}`, __dirname + `./../../public/uploads/${avatarProfile}`)
+        }
+
+        if (coverProfile) {
+            fs.renameSync(__dirname + `/../../temp/${coverProfile}`, __dirname + `./../../public/uploads/${coverProfile}`)
         }
 
         if (user._id) {

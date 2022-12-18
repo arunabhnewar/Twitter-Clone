@@ -8,8 +8,185 @@ const replyImgInput = document.querySelector("#replyImg");
 const replyBtn = document.querySelector(".replyBtn");
 
 
-let postedImages = [];
+// Avatar  reference
+const updateInputAvatar = document.querySelector("input#updateInputAvatar");
+const previewAvatar = document.querySelector("img#previewAvatar");
+const saveAvatarImage = document.querySelector("button#saveAvatarImage");
 
+// Cover Reference
+const updateInputCover = document.querySelector("input#updateInputCover");
+const previewCover = document.querySelector("img#previewCover");
+const saveCoverImage = document.querySelector("button#saveCoverImage");
+
+
+
+let postedImages = [];
+let replyImages = [];
+let imgCropper;
+
+// Create new tweet post
+function createNewTweet(data) {
+
+    let newData = data;
+    let reTweetedPost = '';
+    let replyTo = "";
+    let removeBtn = "";
+
+    if (data.postData) {
+        newData = data.postData;
+        reTweetedPost = `
+        <p class="reTweeted_post">
+        <i class="fas fa-retweet"></i>
+        <span class="retweeted_user_link"> ${data.tweetedBy.userName === user.userName ? "You Retweeted" : "<a href='/profile/" + data.tweetedBy.userName + ">" + data.tweetedBy.userName + " </a> Retweeted"} </span>
+        </p>
+        `;
+    };
+
+
+    if (data.replyTo?.tweetedBy?.userName) {
+        replyTo = `
+        <div class="replyUser">
+            <p>Replying to <span>@</span><a href="/profile/${data.replyTo.tweetedBy.userName}">${data.replyTo.tweetedBy.userName}</a>
+            </p>
+        </div>`;
+    }
+
+    const {
+        _id: postId,
+        tweetTxtContent,
+        replyTextContent,
+        images: tweetImages,
+        tweetedBy: { _id, firstName, lastName, userName, avatarProfile },
+        createdAt,
+        loves,
+        retweetUsers,
+        replyTweets
+    } = newData;
+
+
+    if (data?.tweetedBy?._id === user?._id) {
+        removeBtn = `
+        <button onclick="removeTweet('${data._id}')" class="remove_btn" >
+        <i class="fas fa-trash" ></i>
+        Remove Your Tweet
+        </button>
+        `
+    }
+
+    // Time ago function
+    function timeSince(date) {
+
+        let seconds = Math.floor((new Date() - date) / 1000);
+
+        let interval = seconds / 31536000;
+
+        if (interval > 1) {
+            return Math.floor(interval) + " years";
+        }
+        interval = seconds / 2592000;
+        if (interval > 1) {
+            return Math.floor(interval) + " months";
+        }
+        interval = seconds / 86400;
+        if (interval > 1) {
+            return Math.floor(interval) + " days";
+        }
+        interval = seconds / 3600;
+        if (interval > 1) {
+            return Math.floor(interval) + " hours";
+        }
+        interval = seconds / 60;
+        if (interval > 1) {
+            return Math.floor(interval) + " minutes";
+        }
+        return Math.floor(seconds) + " seconds";
+    }
+
+    const timeAgo = timeSince(new Date(createdAt).getTime());
+
+    const avatarUrl = avatarProfile ? `/uploads/${_id}/${avatarProfile}` : `/uploads/avatar.png`;
+
+    const div = document.createElement("div");
+    div.innerHTML = `
+    
+    ${reTweetedPost}
+
+    <div class="newTweet" onclick="openTweet(event, '${postId}')">
+        <div class="avatar_image">
+            <div class="image">
+            <img class="avatar" src="${avatarUrl}"  />
+            </div>
+        </div>
+
+        <div class="newTweet_body">
+            <div class="newTweet_header">
+                <div class="header_items">
+                    <a href="/profile/${userName}" class="show_name"> ${firstName + " " + lastName} </a>
+                    <span class="show_username"> @${userName} .</span>
+                    <div class="timeAgo">${timeAgo}</div>
+                </div>
+
+                <div class="dropleft">
+                    <button class="posted_more " data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">
+                        ${removeBtn}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+           ${replyTo}
+           <p class="reply_txt_content">${replyTextContent}</p>
+
+            <div class="newTweet_content">${tweetTxtContent}</div>
+
+            <div class="newTweet_images"></div>
+
+            <div class="replyingUser">
+                <a > <span>Replying to</span>  @${userName}</a>
+            </div>
+
+            <div class="newTweet_footer">
+
+                <button class="reply" data-post='${JSON.stringify(data)}' onclick="replyhandler(event, '${postId}')"  
+                data-toggle="modal" data-target="#replyModal" data-toggle='tooltip', data-placement='bottom', title='Reply' >
+                    <i class="fas fa-comment"></i>
+                <span>${replyTweets.length || ""}</span>
+                </button>
+
+                <button class="retweet ${retweetUsers.includes(user._id) ? "active" : ""}" onclick="retweetHandler(event, '${postId}')"  data-toggle='tooltip', data-placement='bottom', title='Retweet'>
+                    <i class="fas fa-retweet"></i>
+                    <span>${retweetUsers.length || ""}</span>
+                </button>
+
+                <button class="love ${user.loves.includes(postId) ? "lovedIt" : ""}" onclick="loveHandler(event, '${postId}')"  data-toggle='tooltip', data-placement='bottom', title='Like'>
+                    <i class="fas fa-heart"></i>
+                    <span>${loves.length ? loves.length : ""}</span>
+                </button>
+
+                <button class="share"  data-toggle='tooltip', data-placement='bottom', title='Share'>
+                    <i class="fas fa-upload"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    `;
+
+    const imageContainer = div.querySelector("div.newTweet_images");
+    tweetImages?.forEach(img => {
+        const imageDiv = document.createElement("div");
+        imageDiv.classList.add("newTweet_img");
+        imageDiv.innerHTML = `
+        <img src="${window.location.origin}/uploads/${_id}/tweetsImg/${img}" alt="" />
+        `;
+
+        imageContainer.appendChild(imageDiv);
+
+    })
+    return div;
+}
 
 
 // Reply post button enable or disable handle
@@ -218,6 +395,7 @@ const allPostLoad = async () => {
 allPostLoad();
 
 
+// 
 function followHandler(e, userId) {
     const url = `${window.location.origin}/profile/${userId}/follow`;
     fetch(url, {
@@ -246,3 +424,111 @@ function followHandler(e, userId) {
 
         })
 }
+
+
+
+// 
+updateInputAvatar.addEventListener("change", function (e) {
+    const files = this.files;
+
+    if (files && files[0]) {
+        const fsReader = new FileReader();
+
+        fsReader.onload = function (e) {
+            previewAvatar.src = e.target.result;
+
+            imgCropper = new Cropper(previewAvatar, {
+                aspectRatio: 1 / 1,
+                background: false,
+            });
+        };
+
+        fsReader.readAsDataURL(files[0]);
+    } else {
+        console.log("fuck!!");
+    }
+})
+
+
+
+// 
+saveAvatarImage.addEventListener("click", function (e) {
+    const canvas = imgCropper?.getCroppedCanvas();
+
+    if (canvas) {
+        canvas.toBlob((blob) => {
+            const fileName = updateInputAvatar?.files[0]?.name;
+            const formData = new FormData();
+            formData.append("avatar", blob, fileName);
+
+            const url = `${window.location.origin}/profile/avatar`;
+            fetch(url, {
+                method: "POST",
+                body: formData,
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data._id) {
+                        location.reload()
+                    }
+                })
+        });
+    } else {
+        alert("Please select your fucking avatar image.")
+    }
+})
+
+
+
+
+// 
+updateInputCover.addEventListener("change", function (e) {
+    const files = this.files;
+
+    if (files && files[0]) {
+        const fsReader = new FileReader();
+
+        fsReader.onload = function (e) {
+            previewCover.src = e.target.result;
+
+            imgCropper = new Cropper(previewCover, {
+                aspectRatio: 1 / 1,
+                background: false,
+            });
+        };
+
+        fsReader.readAsDataURL(files[0]);
+    } else {
+        console.log("fuck!!");
+    }
+})
+
+
+
+
+// 
+saveCoverImage.addEventListener("click", function (e) {
+    const canvas = imgCropper?.getCroppedCanvas();
+
+    if (canvas) {
+        canvas.toBlob((blob) => {
+            const fileName = updateInputCover?.files[0]?.name;
+            const formData = new FormData();
+            formData.append("cover", blob, fileName);
+
+            const url = `${window.location.origin}/profile/cover`;
+            fetch(url, {
+                method: "POST",
+                body: formData,
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data._id) {
+                        location.reload()
+                    }
+                })
+        });
+    } else {
+        alert("Please select your fucking cover image.")
+    }
+})

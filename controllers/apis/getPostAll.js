@@ -11,12 +11,12 @@ const getPostAll = async (req, res, next) => {
 
         req.query.replyTo && (filterObj.replyTo = req.query?.replyTo == "false" ? { $exists: false } : { $exists: true });
 
-        const user = await User.findOne({ _id: req.id });
+        const userProfile = await User.findOne({ _id: req.id });
 
-        user.following = user.following || [];
+        userProfile.following = userProfile.following || [];
 
-        const followingUsers = [...user.following];
-        followingUsers.push(user._id)
+        const followingUsers = [...userProfile.following];
+        followingUsers.push(userProfile._id)
 
         req.query.followingOnly && req.query.followingOnly == "true" && (filterObj.tweetedBy = { $in: followingUsers });
 
