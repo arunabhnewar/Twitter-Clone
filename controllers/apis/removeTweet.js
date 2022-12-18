@@ -8,6 +8,7 @@ const removeTweet = async (req, res, next) => {
         const postId = req.params.postId;
         const userId = req.id;
 
+
         // Delete origin tweet
         const removedTweet = await Tweet.findOneAndDelete({ _id: postId, tweetedBy: userId });
 
@@ -71,9 +72,12 @@ const removeTweet = async (req, res, next) => {
 
         // Delete all retweeted tweet
         if (removedTweet?.retweetUsers?.length) {
-            const removedRetweetedPost = await Tweet.findOneAndDelete({
-                postData: removedTweet._id,
-                tweetedBy: uId,
+            removedTweet?.retweetUsers?.forEach(async (userId) => {
+
+                const removedRetweetedPost = await Tweet.findOneAndDelete({
+                    tweetedBy: userId,
+                    postData: removedTweet._id,
+                });
             })
         }
 

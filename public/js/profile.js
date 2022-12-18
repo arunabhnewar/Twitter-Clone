@@ -31,6 +31,34 @@ function createNewTweet(data) {
     let reTweetedPost = '';
     let replyTo = "";
     let removeBtn = "";
+    let pinBtn = "";
+
+    // if (data.postData) {
+    //     if (data?.tweetedBy?._id === user?._id) {
+    //         removeBtn = `
+    //         <button onclick="removeTweet('${data._id}')" class="remove_btn" >
+    //             <i class="fas fa-trash" ></i>
+    //             Remove Your Tweet
+    //         </button>
+    //         `
+    //     }
+    // }
+
+    if (newData?.tweetedBy?._id === user?._id) {
+        removeBtn = `
+            <button onclick="removeTweet('${data._id}')" class="remove_btn" >
+                <i class="fas fa-trash" ></i>
+                Remove Your Tweet
+            </button>
+            `
+
+        pinBtn = `
+        <button onclick="pinTweet('${data._id}')" class="pin_btn" >
+            <i class="fas fa-thumbtack" ></i>
+            Pin Your Tweet
+        </button>
+        `
+    }
 
     if (data.postData) {
         newData = data.postData;
@@ -63,15 +91,22 @@ function createNewTweet(data) {
         replyTweets
     } = newData;
 
+    // if (newData?.tweetedBy?._id === user?._id) {
+    //     removeBtn = `
+    //     <button onclick="removeTweet('${data._id}')" class="remove_btn" >
+    //         <i class="fas fa-trash" ></i>
+    //         Remove Your Tweet
+    //     </button>
+    //     `
 
-    if (data?.tweetedBy?._id === user?._id) {
-        removeBtn = `
-        <button onclick="removeTweet('${data._id}')" class="remove_btn" >
-        <i class="fas fa-trash" ></i>
-        Remove Your Tweet
-        </button>
-        `
-    }
+    //     pinBtn = `
+    //     <button onclick="pinTweet('${data._id}')" class="pin_btn" >
+    //         <i class="fas fa-thumbtack" ></i>
+    //         Pin Your Tweet
+    //     </button>
+    //     `
+    // }
+
 
     // Time ago function
     function timeSince(date) {
@@ -132,6 +167,12 @@ function createNewTweet(data) {
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">
                         ${removeBtn}
+                        </a>
+                    </div>
+
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">
+                        ${pinBtn}
                         </a>
                     </div>
                 </div>
@@ -492,7 +533,7 @@ updateInputCover.addEventListener("change", function (e) {
             previewCover.src = e.target.result;
 
             imgCropper = new Cropper(previewCover, {
-                aspectRatio: 1 / 1,
+                aspectRatio: 16 / 9,
                 background: false,
             });
         };

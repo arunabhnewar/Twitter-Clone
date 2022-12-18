@@ -58,7 +58,7 @@ function createFollowElement(data) {
     const name = data.firstName + " " + data.lastName;
     const isFollowing = data.followers.includes(user._id);
 
-    const avatarUrl = data.avatarProfile ? `/uploads/${_id}/${data.avatarProfile}` : `/uploads/avatar.png`;
+    const avatarUrl = data.avatarProfile ? `/uploads/${data.avatarProfile}` : `/uploads/avatar.png`;
 
     let followDiv = "";
 

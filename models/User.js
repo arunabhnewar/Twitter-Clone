@@ -44,11 +44,11 @@ const userSchema = new Schema({
     },
     avatarProfile: {
         type: String,
-        required: true,
+
     },
     coverProfile: {
         type: String,
-        required: true,
+
     },
     status: {
         type: String,

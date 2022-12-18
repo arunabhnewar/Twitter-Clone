@@ -6,24 +6,71 @@ function createNewTweet(data) {
     let reTweetedPost = '';
     let replyTo = "";
     let removeBtn = "";
+    let pinBtn = "";
+
+
+
+
+    // if (data?.tweetedBy?._id === user?._id) {
+    //     removeBtn = `
+    //         <button onclick="removeTweet('${data._id}')" class="remove_btn" >
+    //             <i class="fas fa-trash" ></i>
+    //             Remove Your Tweet
+    //         </button>
+    //         `
+    //     pinBtn = `
+    //         <button onclick="pinTweet('${data._id}')" class="pin_btn" >
+    //             <i class="fas fa-thumbtack" ></i>
+    //             Pin Your Tweet
+    //         </button>
+    //         `
+    // }
+
+
+    if (data?.tweetedBy?._id === user?._id) {
+        removeBtn = `
+        <div class="dropleft">
+        <button class="posted_more " data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">
+                <button onclick="removeTweet('${data._id}')" class="remove_btn" >
+                    <i class="fas fa-trash" ></i>
+                    Remove Your Tweet
+                </button>
+            </a>
+
+            <a class="dropdown-item" href="#">
+                <button onclick="pinTweet('${data._id}')" class="pin_btn" >
+                    <i class="fas fa-thumbtack" ></i>
+                    Pin Your Tweet
+                </button>
+            </a>
+        </div>
+    </div>
+            `
+
+    }
+
 
     if (data.postData) {
         newData = data.postData;
-        reTweetedPost = `
-        <p class="reTweeted_post">
+        reTweetedPost = user.userName === data.tweetedBy.userName ? `
+            <p class="reTweeted_post" >
         <i class="fas fa-retweet"></i>
         <span class="retweeted_user_link"> ${data.tweetedBy.userName === user.userName ? "You Retweeted" : "<a href='/profile/" + data.tweetedBy.userName + ">" + data.tweetedBy.userName + " </a> Retweeted"} </span>
         </p>
-        `;
+            ` :
+            `<p class="retweetedHtml"><i class="fas fa-retweet"></i> Retwetted By <a href=${window.location.origin}/profile/${data.tweetedBy.userName}>${data.tweetedBy.userName} </a> </p>`;
     };
 
 
     if (data.replyTo?.tweetedBy?.userName) {
         replyTo = `
-        <div class="replyUser">
-            <p>Replying to <span>@</span><a href="/profile/${data.replyTo.tweetedBy.userName}">${data.replyTo.tweetedBy.userName}</a>
-            </p>
-        </div>`;
+            <div div class="replyUser" >
+                <p>Replying to <span>@</span><a href="/profile/${data.replyTo.tweetedBy.userName}">${data.replyTo.tweetedBy.userName}</a>
+                </p>
+        </div> `;
     }
 
     const {
@@ -35,18 +82,18 @@ function createNewTweet(data) {
         createdAt,
         loves,
         retweetUsers,
-        replyTweets
+        replyTweets,
     } = newData;
 
 
-    if (data?.tweetedBy?._id === user?._id) {
-        removeBtn = `
-        <button onclick="removeTweet('${data._id}')" class="remove_btn" >
-        <i class="fas fa-trash" ></i>
-        Remove Your Tweet
-        </button>
-        `
-    }
+    // if (newData?.tweetedBy?._id === user?._id) {
+    //     removeBtn = `
+    //     <button onclick="removeTweet('${data._id}')" class="remove_btn" >
+    //     <i class="fas fa-trash" ></i>
+    //     Remove Your Tweet
+    //     </button>
+    //     `
+    // }
 
     // Time ago function
     function timeSince(date) {
@@ -101,15 +148,7 @@ function createNewTweet(data) {
                     <div class="timeAgo">${timeAgo}</div>
                 </div>
 
-                <div class="dropleft">
-                    <button class="posted_more " data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
-
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">
-                        ${removeBtn}
-                        </a>
-                    </div>
-                </div>
+                ${removeBtn}
             </div>
 
            ${replyTo}
