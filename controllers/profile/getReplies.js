@@ -13,7 +13,7 @@ const getReplies = async (req, res, next) => {
         const userFrontendJs = JSON.stringify(user);
         const profileUserJs = JSON.stringify(userProfile);
 
-        return res.render('pages/profile/profile', { user: user ? user : {}, userFrontendJs, userAllTweets, userProfile, profileUserJs, tab: "replies" });
+        return res.render('pages/profile/profile', { user: user ? user : {}, userFrontendJs, userProfile, userAllTweets, profileUserJs, tab: "replies" });
 
     } catch (error) {
         next(createHttpError(500, "Sorry, internal server error!!"))

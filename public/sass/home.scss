@@ -423,11 +423,312 @@ body {
             }
         }
 
+        div {
+            p.retweetedHtml {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-left: 35px;
+                padding-top: 5px;
+
+                i {
+                    color: #6A6F73;
+                }
+
+                span.retweeted_user_link {
+                    padding-left: 15px;
+                    color: #6A6F73;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+
+                    a {
+                        color: #6A6F73;
+                    }
+                }
+            }
+        }
+
+
         h6.nonePost_show {
             text-align: center;
             color: #1D9BF0;
             font-weight: 400;
             margin-top: 10px;
+        }
+
+        .tweetPin {
+
+            .tweetPinIcon {
+                margin-left: 42px;
+                margin-top: 5px;
+
+                i.fas.fa-thumbtack {
+                    color: #71767B;
+                    margin-right: 5px;
+                }
+
+                span {
+                    color: #71767B;
+                }
+            }
+
+            .newTweet {
+                display: flex;
+                padding: 5px 11px;
+                border-bottom: 1px solid #2F3336;
+                cursor: pointer;
+                margin-top: 10px;
+
+                .avatar_image {
+                    width: 60px;
+
+                    .image {
+                        width: 50px;
+                        overflow: hidden;
+                        margin-right: 15px;
+
+                        img.avatar {
+                            width: 100%;
+                            height: 50px;
+                            border-radius: 25px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .newTweet_body {
+                    width: 100%;
+
+                    .newTweet_header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .header_items {
+                            display: flex;
+                            align-items: center;
+
+                            a.show_name {
+                                color: #CED0D1;
+                                padding-right: 4px;
+                            }
+
+                            span.show_username {
+                                color: #5E6266;
+                                padding-right: 25px;
+                            }
+
+                            .timeAgo {
+                                color: #5E6266;
+                                padding-right: 10px;
+                            }
+                        }
+
+
+                        div.dropleft {
+                            .posted_more {
+                                color: #5E6266;
+                                cursor: pointer;
+                                background: transparent;
+                                height: 35px;
+                                width: 35px;
+                                border-radius: 50%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                transition: 0.5s;
+
+                                &:hover {
+                                    background: #0A1720;
+                                    color: #29A0F0;
+                                }
+
+                                i.fas.fa-ellipsis-h {
+                                    pointer-events: none;
+                                }
+                            }
+
+                            .dropdown-menu {
+                                background-color: #000;
+                                box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+                                border-radius: 5px;
+
+                                a.dropdown-item {
+                                    transition: 0.5s;
+
+                                    &:hover {
+                                        background: #16181C;
+                                    }
+
+                                    button.remove_btn {
+                                        border: 0;
+                                        outline: 0;
+                                        background: transparent;
+                                        color: #B91A24;
+                                        font-weight: 700;
+                                    }
+
+                                    button.pin_btn {
+                                        border: 0;
+                                        outline: 0;
+                                        background: transparent;
+                                        color: #dcdedf;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                    .replyUser {
+                        color: #5e6266;
+
+                        p {
+                            span {
+                                color: #1988d3;
+                            }
+                        }
+                    }
+
+                    .reply_txt_content {
+                        color: #CED0D1;
+                    }
+
+
+                    .newTweet_content {
+                        color: #CED0D1;
+                        margin: 5px 0 20px 0;
+                    }
+
+                    .newTweet_images {
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        gap: 10px;
+                        width: 100%;
+
+
+                        .newTweet_img {
+                            width: 100%;
+                            height: 100%;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 10px;
+                                object-fit: cover;
+                            }
+                        }
+                    }
+
+                    .replyingUser {
+                        display: none;
+                    }
+
+                    .newTweet_footer {
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        margin: 10px 0;
+
+                        button.reply {
+                            border: 0;
+                            outline: 0;
+                            background: transparent;
+                            color: #4d5053;
+                            transition: 0.5s;
+
+                            &:hover {
+                                color: #1A8AD6;
+                            }
+
+                            i {
+                                pointer-events: none;
+                            }
+
+                            span {
+                                pointer-events: none;
+                            }
+                        }
+
+
+                        button.retweet {
+                            border: 0;
+                            outline: 0;
+                            background: transparent;
+                            color: #4d5053;
+                            transition: 0.5s;
+
+                            &:hover {
+                                color: #019866
+                            }
+
+                            i {
+                                pointer-events: none;
+                            }
+
+                            span {
+                                pointer-events: none;
+                            }
+                        }
+
+                        button.retweet.active {
+
+                            i {
+                                color: #019866
+                            }
+
+                            span {
+                                color: #019866
+                            }
+                        }
+
+
+                        button.love {
+                            border: 0;
+                            outline: 0;
+                            background: transparent;
+                            color: #4d5053;
+                            transition: 0.5s;
+
+                            &:hover {
+                                color: #C21465;
+                            }
+
+                            i {
+                                pointer-events: none;
+                            }
+
+                            span {
+                                pointer-events: none;
+                            }
+                        }
+
+                        button.love.lovedIt {
+                            i {
+                                color: #F91880;
+                            }
+
+                            span {
+                                color: #F91880;
+                            }
+                        }
+
+                        button.share {
+                            border: 0;
+                            outline: 0;
+                            background: transparent;
+                            color: #4d5053;
+                            transition: 0.5s;
+
+                            &:hover {
+                                color: #1A8AD6;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         .newTweet {
@@ -519,6 +820,14 @@ body {
                                 }
 
                                 button.remove_btn {
+                                    border: 0;
+                                    outline: 0;
+                                    background: transparent;
+                                    color: #B91A24;
+                                    font-weight: 700;
+                                }
+
+                                button.pin_btn {
                                     border: 0;
                                     outline: 0;
                                     background: transparent;

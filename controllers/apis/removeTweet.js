@@ -82,6 +82,20 @@ const removeTweet = async (req, res, next) => {
         }
 
 
+        /* delete all replies of main tweets */
+        if (removedTweet?.replyTweets.length) {
+            removedTweet?.replyTweets.forEach(async (replyId) => {
+                const deleteReplyPosts = await Tweet.findOneAndDelete(
+                    {
+                        _id: replyId,
+                    },
+                    { new: true }
+                );
+                // return console.log(deleteReplyPosts);
+            });
+        }
+
+
         // Delete postId from the loves array of users 
         if (removedTweet?.loves?.length) {
             removedTweet?.loves?.forEach(async (userId) => {

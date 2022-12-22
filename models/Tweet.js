@@ -48,7 +48,7 @@ const tweetSchema = new mongoose.Schema({
             ref: "Tweet",
         },
     ],
-
+    pinned: Boolean,
 },
     {
         timestamps: true,

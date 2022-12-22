@@ -1,7 +1,9 @@
 
 // Create new tweet post
-function createNewTweet(data) {
-
+function createNewTweet(data, pinned) {
+    if (pinned) {
+        console.log(data)
+    }
     let newData = data;
     let reTweetedPost = '';
     let replyTo = "";
@@ -9,25 +11,25 @@ function createNewTweet(data) {
     let pinBtn = "";
 
 
-
-
-    // if (data?.tweetedBy?._id === user?._id) {
-    //     removeBtn = `
-    //         <button onclick="removeTweet('${data._id}')" class="remove_btn" >
-    //             <i class="fas fa-trash" ></i>
-    //             Remove Your Tweet
-    //         </button>
-    //         `
-    //     pinBtn = `
-    //         <button onclick="pinTweet('${data._id}')" class="pin_btn" >
-    //             <i class="fas fa-thumbtack" ></i>
-    //             Pin Your Tweet
-    //         </button>
-    //         `
-    // }
-
-
     if (data?.tweetedBy?._id === user?._id) {
+
+        if (!data.replyTo) {
+
+            if (!data.pinned) {
+                pinBtn = `
+                <button onclick="pinTweet('${data._id}', ${data.pinned})" class="pin_btn ${data.pinned ? 'active' : ''}" >
+                <i class="fas fa-thumbtack" ></i>
+                Pin to your profile
+                </button>`
+            } else {
+                pinBtn = `
+                <button onclick="pinTweet('${data._id}', ${data.pinned})" class="pin_btn ${data.pinned ? 'active' : ''}" >
+                <i class="fas fa-thumbtack" ></i>
+                Unpin from profile
+                </button>`
+            }
+        }
+
         removeBtn = `
         <div class="dropleft">
         <button class="posted_more " data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
@@ -41,15 +43,11 @@ function createNewTweet(data) {
             </a>
 
             <a class="dropdown-item" href="#">
-                <button onclick="pinTweet('${data._id}')" class="pin_btn" >
-                    <i class="fas fa-thumbtack" ></i>
-                    Pin Your Tweet
-                </button>
+                ${pinBtn}
             </a>
         </div>
     </div>
             `
-
     }
 
 
@@ -61,7 +59,7 @@ function createNewTweet(data) {
         <span class="retweeted_user_link"> ${data.tweetedBy.userName === user.userName ? "You Retweeted" : "<a href='/profile/" + data.tweetedBy.userName + ">" + data.tweetedBy.userName + " </a> Retweeted"} </span>
         </p>
             ` :
-            `<p class="retweetedHtml"><i class="fas fa-retweet"></i> Retwetted By <a href=${window.location.origin}/profile/${data.tweetedBy.userName}>${data.tweetedBy.userName} </a> </p>`;
+            `<p class="retweetedHtml"><i class="fas fa-retweet"></i> <span class="retweeted_user_link"> Retwetted By <a href=${window.location.origin}/profile/${data.tweetedBy.userName}>${data.tweetedBy.userName} </a> </span> </p>`;
     };
 
 
@@ -86,14 +84,6 @@ function createNewTweet(data) {
     } = newData;
 
 
-    // if (newData?.tweetedBy?._id === user?._id) {
-    //     removeBtn = `
-    //     <button onclick="removeTweet('${data._id}')" class="remove_btn" >
-    //     <i class="fas fa-trash" ></i>
-    //     Remove Your Tweet
-    //     </button>
-    //     `
-    // }
 
     // Time ago function
     function timeSince(date) {
@@ -128,10 +118,24 @@ function createNewTweet(data) {
 
     const avatarUrl = avatarProfile ? `/uploads/${avatarProfile}` : `/uploads/avatar.png`;
 
+
+
     const div = document.createElement("div");
+
+    let pinTweet = '';
+
+    if (pinned) {
+        div.classList.add("tweetPin");
+        pinTweet = `
+        <div class="tweetPinIcon">
+            <i class="fas fa-thumbtack" ></i> <span>Pinned Tweet</span>
+        </div>
+        `
+    }
     div.innerHTML = `
     
     ${reTweetedPost}
+    ${pinTweet}
 
     <div class="newTweet" onclick="openTweet(event, '${postId}')">
         <div class="avatar_image">
@@ -316,7 +320,7 @@ function deleteReplyData() {
 // Tweet open in another page
 function openTweet(event, postId) {
     const targetElement = event.target;
-    console.log(targetElement)
+
     if (targetElement.localName === "button" || targetElement.localName === "a") return;
 
     window.location.href = `${window.location.origin}/posts/${postId}`
@@ -343,7 +347,6 @@ function removeTweet(postId) {
             }).then(res => res.json())
                 .then(data => {
                     if (data._id) {
-                        console.log(data);
                         location.reload();
                     } else {
                         location.href = "/"
@@ -353,3 +356,33 @@ function removeTweet(postId) {
     })
 }
 
+
+
+// Tweet Pinned
+function pinTweet(postId, pinned) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: pinned ? "This will no longer appear automatically at the top of your profile." : "This will appear at the top of your profile and replace any previously pinned Tweet.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1A8CD8',
+        cancelButtonColor: '#d33',
+        confirmButtonText: pinned ? 'Unpin' : 'Pin'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            const url = `${window.location.origin}/posts/${postId}/pin`;
+            fetch(url, {
+                method: "PUT",
+            }).then(res => res.json())
+                .then(data => {
+                    if (data?._id) {
+                        console.log(data);
+                        location.reload();
+                    } else {
+                        location.href = "/"
+                    }
+                })
+        }
+    })
+}

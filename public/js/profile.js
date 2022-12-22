@@ -31,43 +31,37 @@ function createNewTweet(data) {
     let reTweetedPost = '';
     let replyTo = "";
     let removeBtn = "";
-    let pinBtn = "";
+    // let pinBtn = "";
 
-    // if (data.postData) {
-    //     if (data?.tweetedBy?._id === user?._id) {
-    //         removeBtn = `
-    //         <button onclick="removeTweet('${data._id}')" class="remove_btn" >
-    //             <i class="fas fa-trash" ></i>
-    //             Remove Your Tweet
-    //         </button>
+
+    // if (data?.tweetedBy?._id === user?._id) {
+    //     removeBtn = `
+    //     <div class="dropleft">
+    //     <button class="posted_more " data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+
+    //     <div class="dropdown-menu">
+    //         <a class="dropdown-item" href="#">
+    //             <button onclick="removeTweet('${data._id}')" class="remove_btn" >
+    //                 <i class="fas fa-trash" ></i>
+    //                 Remove Your Tweet
+    //             </button>
+    //         </a>
+
+
+    //     </div>
+    // </div>
     //         `
-    //     }
     // }
-
-    if (newData?.tweetedBy?._id === user?._id) {
-        removeBtn = `
-            <button onclick="removeTweet('${data._id}')" class="remove_btn" >
-                <i class="fas fa-trash" ></i>
-                Remove Your Tweet
-            </button>
-            `
-
-        pinBtn = `
-        <button onclick="pinTweet('${data._id}')" class="pin_btn" >
-            <i class="fas fa-thumbtack" ></i>
-            Pin Your Tweet
-        </button>
-        `
-    }
 
     if (data.postData) {
         newData = data.postData;
-        reTweetedPost = `
-        <p class="reTweeted_post">
+        reTweetedPost = user.userName === data.tweetedBy.userName ? `
+            <p class="reTweeted_post" >
         <i class="fas fa-retweet"></i>
         <span class="retweeted_user_link"> ${data.tweetedBy.userName === user.userName ? "You Retweeted" : "<a href='/profile/" + data.tweetedBy.userName + ">" + data.tweetedBy.userName + " </a> Retweeted"} </span>
         </p>
-        `;
+            ` :
+            `<p class="retweetedHtml"><i class="fas fa-retweet"></i> <span class="retweeted_user_link"> Retwetted By <a href=${window.location.origin}/profile/${data.tweetedBy.userName}>${data.tweetedBy.userName} </a> </span> </p>`;
     };
 
 
@@ -90,22 +84,6 @@ function createNewTweet(data) {
         retweetUsers,
         replyTweets
     } = newData;
-
-    // if (newData?.tweetedBy?._id === user?._id) {
-    //     removeBtn = `
-    //     <button onclick="removeTweet('${data._id}')" class="remove_btn" >
-    //         <i class="fas fa-trash" ></i>
-    //         Remove Your Tweet
-    //     </button>
-    //     `
-
-    //     pinBtn = `
-    //     <button onclick="pinTweet('${data._id}')" class="pin_btn" >
-    //         <i class="fas fa-thumbtack" ></i>
-    //         Pin Your Tweet
-    //     </button>
-    //     `
-    // }
 
 
     // Time ago function
@@ -139,7 +117,7 @@ function createNewTweet(data) {
 
     const timeAgo = timeSince(new Date(createdAt).getTime());
 
-    const avatarUrl = avatarProfile ? `/uploads/${_id}/${avatarProfile}` : `/uploads/avatar.png`;
+    const avatarUrl = avatarProfile ? `/uploads/${avatarProfile}` : `/uploads/avatar.png`;
 
     const div = document.createElement("div");
     div.innerHTML = `
@@ -161,21 +139,7 @@ function createNewTweet(data) {
                     <div class="timeAgo">${timeAgo}</div>
                 </div>
 
-                <div class="dropleft">
-                    <button class="posted_more " data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
-
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">
-                        ${removeBtn}
-                        </a>
-                    </div>
-
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">
-                        ${pinBtn}
-                        </a>
-                    </div>
-                </div>
+                ${removeBtn}
             </div>
 
            ${replyTo}
@@ -419,6 +383,7 @@ function openTweet(event, postId) {
 // All Post loaded
 const allPostLoad = async () => {
     try {
+
         const result = await fetch(`${window.location.origin}/posts?tweetedBy=${profileUser._id}&replyTo=${tab == "replies"}`);
         const posts = await result.json();
 
@@ -430,13 +395,27 @@ const allPostLoad = async () => {
             const tweetElement = createNewTweet(post);
             newTweetContainer.insertAdjacentElement("afterbegin", tweetElement)
         })
-    } catch (error) { }
+
+        if (tab === "tweets") {
+            const pinPostResult = await fetch(`${window.location.origin}/posts?tweetedBy=${profileUser._id}&pinned=true`);
+
+            const pinPosts = await pinPostResult.json();
+            pinPosts?.forEach(post => {
+                const tweetElement = createNewTweet(post, true);
+                newTweetContainer.insertAdjacentElement("afterbegin", tweetElement)
+            })
+        }
+
+
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 allPostLoad();
 
 
-// 
+// followers n following data handle
 function followHandler(e, userId) {
     const url = `${window.location.origin}/profile/${userId}/follow`;
     fetch(url, {
@@ -468,7 +447,7 @@ function followHandler(e, userId) {
 
 
 
-// 
+// Avatar img resize handle
 updateInputAvatar.addEventListener("change", function (e) {
     const files = this.files;
 
@@ -492,7 +471,7 @@ updateInputAvatar.addEventListener("change", function (e) {
 
 
 
-// 
+// Avatar img save n upload event handle
 saveAvatarImage.addEventListener("click", function (e) {
     const canvas = imgCropper?.getCroppedCanvas();
 
@@ -522,7 +501,7 @@ saveAvatarImage.addEventListener("click", function (e) {
 
 
 
-// 
+// Cover img resize handle
 updateInputCover.addEventListener("change", function (e) {
     const files = this.files;
 
@@ -547,7 +526,7 @@ updateInputCover.addEventListener("change", function (e) {
 
 
 
-// 
+// Cover img save n upload event handle
 saveCoverImage.addEventListener("click", function (e) {
     const canvas = imgCropper?.getCroppedCanvas();
 

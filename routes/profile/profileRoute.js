@@ -34,11 +34,11 @@ profileRoute.get('/:userName/followers', htmlResponse(`Profile Page - ${process.
 
 
 
-// 
+// New Avatar image Update
 profileRoute.post('/avatar', signInChecker, avatarUpdateImg, avatarUpdate)
 
 
-// 
+// New Cover image Update
 profileRoute.post('/cover', signInChecker, coverUpdateImg, coverUpdate)
 
 

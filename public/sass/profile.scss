@@ -264,11 +264,16 @@ body {
             width: 250px;
             height: 35px;
 
-            &:hover {
-                background: #181818;
-                border-bottom: 2px solid #1D9BF0;
-            }
+            // &:hover {
+            //     background: #181818;
+            //     border-bottom: 2px solid #1D9BF0;
+            // }
         }
+    }
+
+    a.tweets_tab.active {
+        background: #181818;
+        border-bottom: 2px solid #1D9BF0;
     }
 
     a.replies_tab {
@@ -280,11 +285,16 @@ body {
             width: 250px;
             height: 35px;
 
-            &:hover {
-                background: #181818;
-                border-bottom: 2px solid #1D9BF0;
-            }
+            // &:hover {
+            //     background: #181818;
+            //     border-bottom: 2px solid #1D9BF0;
+            // }
         }
+    }
+
+    a.replies_tab.active {
+        background: #181818;
+        border-bottom: 2px solid #1D9BF0;
     }
 }
 

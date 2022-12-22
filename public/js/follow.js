@@ -15,11 +15,8 @@ function followHandler(e, userId) {
                 if (profileUser._id === user._id) {
                     following.textContent = parseInt(following.textContent) + 1
                 }
-
                 followBtn.classList.add("active");
                 followBtn.textContent = "Following";
-                // followers.textContent = data.followers?.length;
-                // following.textContent = data.following?.length;
             }
             else {
                 if (profileUser._id === user._id) {
@@ -27,8 +24,6 @@ function followHandler(e, userId) {
                 }
                 followBtn.classList.remove("active");
                 followBtn.textContent = "Follow";
-                // followers.textContent = data.followers?.length;
-                // following.textContent = data.following?.length;
             }
 
         })
