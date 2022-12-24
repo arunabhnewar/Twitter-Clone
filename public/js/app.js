@@ -1,3 +1,12 @@
+// Reply reference
+const txtFieldReplyContent = document.querySelector("textarea#replyContent");
+const replyImageContainer = document.querySelector(".reply_img_container");
+const replyImgInput = document.querySelector("#replyImg");
+const replyBtn = document.querySelector(".replyBtn");
+
+
+let postedImages = [];
+let replyImages = [];
 
 // Create new tweet post
 function createNewTweet(data, pinned) {
@@ -32,7 +41,7 @@ function createNewTweet(data, pinned) {
 
         removeBtn = `
         <div class="dropleft">
-        <button class="posted_more " data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+        <button class="posted_more " data-toggle="dropdown" aria-expanded="false" data-toggle='tooltip', data-placement='bottom', title='More'><i class="fas fa-ellipsis-h"></i></button>
 
         <div class="dropdown-menu">
             <a class="dropdown-item" href="#">
@@ -55,9 +64,9 @@ function createNewTweet(data, pinned) {
         newData = data.postData;
         reTweetedPost = user.userName === data.tweetedBy.userName ? `
             <p class="reTweeted_post" >
-        <i class="fas fa-retweet"></i>
-        <span class="retweeted_user_link"> ${data.tweetedBy.userName === user.userName ? "You Retweeted" : "<a href='/profile/" + data.tweetedBy.userName + ">" + data.tweetedBy.userName + " </a> Retweeted"} </span>
-        </p>
+                <i class="fas fa-retweet"></i>
+                <span class="retweeted_user_link"> ${data.tweetedBy.userName === user.userName ? "You Retweeted" : "<a href='/profile/" + data.tweetedBy.userName + ">" + data.tweetedBy.userName + " </a> Retweeted"} </span>
+            </p>
             ` :
             `<p class="retweetedHtml"><i class="fas fa-retweet"></i> <span class="retweeted_user_link"> Retwetted By <a href=${window.location.origin}/profile/${data.tweetedBy.userName}>${data.tweetedBy.userName} </a> </span> </p>`;
     };
@@ -208,6 +217,73 @@ function createNewTweet(data, pinned) {
 
 
 
+// Reply post button enable or disable handle
+txtFieldReplyContent.addEventListener("input", function (e) {
+    const value = this.value.trim();
+
+    if (value || replyImages.length) {
+        replyBtn.removeAttribute("disabled")
+    } else {
+        replyBtn.setAttribute("disabled", true);
+    }
+})
+
+
+// Single or multiple reply images post handle
+replyImgInput.addEventListener("change", function (e) {
+    const files = this.files;
+    replyImages = [];
+
+
+    [...files].forEach(file => {
+        if (!["image/png", "image/jpeg", "image/jpg"].includes(file.type)) return;
+
+        replyBtn.removeAttribute("disabled");
+        replyImages.push(file);
+
+        const fileReader = new FileReader();
+        fileReader.onload = function () {
+
+            const div = document.createElement("div");
+            div.classList.add("img");
+            div.dataset.name = file.name;
+            div.innerHTML = `
+            <span id="cls_btn">
+            <i class="fas fa-times"></i>
+            </span><img>
+            `;
+
+            const img = div.querySelector("img");
+            img.src = fileReader.result;
+            replyImageContainer.appendChild(div)
+        }
+        fileReader.readAsDataURL(file)
+    })
+})
+
+
+// Reply Image Container event handle
+replyImageContainer.addEventListener("click", function (e) {
+
+    const clsBtn = e.target.id === "cls_btn" ? e.target : null;
+    if (!clsBtn) return;
+
+    const imgElement = clsBtn.parentElement;
+    const fileName = imgElement.dataset.name;
+
+    replyImages.forEach((file, i) => {
+        if (fileName === file.name) {
+            replyImages.splice(i, 1);
+            imgElement.remove();
+
+            if (!replyImages.length && !txtFieldReplyContent?.value?.trim()) {
+                replyBtn.setAttribute("disabled", true);
+            }
+        }
+    })
+})
+
+
 
 // Love handler
 function loveHandler(event, postId) {
@@ -230,7 +306,6 @@ function loveHandler(event, postId) {
             span.innerText = data.loves.length ? data.loves.length : "";
         })
 }
-
 
 
 
@@ -386,3 +461,38 @@ function pinTweet(postId, pinned) {
         }
     })
 }
+
+
+
+// const allPostLoad = async () => {
+//     try {
+
+//         const result = await fetch(`${window.location.origin}/posts?tweetedBy=${profileUser._id}&replyTo=${tab == "replies"}`);
+//         const posts = await result.json();
+
+//         if (!posts.length) {
+//             return (newTweetContainer.innerHTML = `<h6 class="nonePost_show">Nothing to show</h6>`)
+//         };
+
+//         posts.forEach(post => {
+//             const tweetElement = createNewTweet(post);
+//             newTweetContainer.insertAdjacentElement("afterbegin", tweetElement)
+//         })
+
+//         if (tab === "tweets") {
+//             const pinPostResult = await fetch(`${window.location.origin}/posts?tweetedBy=${profileUser._id}&pinned=true`);
+
+//             const pinPosts = await pinPostResult.json();
+//             pinPosts?.forEach(post => {
+//                 const tweetElement = createNewTweet(post, true);
+//                 newTweetContainer.insertAdjacentElement("afterbegin", tweetElement)
+//             })
+//         }
+
+
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+// allPostLoad();
