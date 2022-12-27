@@ -79,6 +79,8 @@ const userSchema = new Schema({
             ref: "User",
         },
     ],
+    onlineStatus: Boolean,
+    lastSeen: Date,
 }, {
     timestamps: true
 })

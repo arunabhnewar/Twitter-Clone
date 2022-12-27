@@ -70,6 +70,7 @@ function createFollowElement(data) {
     div.innerHTML = `
     <div class="social_connection">
         <div class="avatar">
+            <div class="onlineStatus" data-onlineStatus="Offline"></div>
             <img src="${avatarUrl}">
         </div>
 

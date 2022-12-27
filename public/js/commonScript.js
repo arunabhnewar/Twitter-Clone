@@ -149,7 +149,8 @@ function createNewTweet(data, pinned) {
     <div class="newTweet" onclick="openTweet(event, '${postId}')">
         <div class="avatar_image">
             <div class="image">
-            <img class="avatar" src="${avatarUrl}"  />
+                <div class="onlineStatus" data-onlineStatus="Offline"></div>
+                <img class="avatar" src="${avatarUrl}"  />
             </div>
         </div>
 

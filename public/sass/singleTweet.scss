@@ -246,7 +246,7 @@ body {
             font-weight: 500;
             color: #E7E9EA;
             cursor: pointer;
-            margin-left: 10px;
+            margin-left: 20px;
         }
 
         a {
@@ -724,11 +724,9 @@ div#replyModal {
                         margin-right: 15px;
 
                         .image {
-                            width: 50px;
-                            overflow: hidden;
-                            // margin-right: 15px;
 
                             img.avatar {
+                                width: 50px;
                                 width: 100%;
                                 height: 50px;
                                 border-radius: 25px;
@@ -859,12 +857,10 @@ div#replyModal {
                     width: 100%;
 
                     .reply_avatar {
-                        flex-basis: 45px;
-                        overflow: hidden;
                         margin-right: 15px;
 
                         img {
-                            width: 100%;
+                            flex-basis: 45px;
                             height: 45px;
                             border-radius: 50%;
                             object-fit: cover;

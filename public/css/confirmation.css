@@ -1,1 +1,20 @@
-.confirmation_section{background:#1d2a35;width:100vw;height:100vh}.confirmation_section .confirmation_image{text-align:center}.confirmation_section .confirmation-inner h3{color:#178c20}.confirmation_section .confirmation-heading h5{color:#178c20}.confirmation_section .confirmation-text p{color:#fff}.confirmation_section .confirmation-text p span{color:#1da1f2}
+.confirmation_section {
+  background: #1D2A35;
+  width: 100vw;
+  height: 100vh;
+}
+.confirmation_section .confirmation_image {
+  text-align: center;
+}
+.confirmation_section .confirmation-inner h3 {
+  color: #178C20;
+}
+.confirmation_section .confirmation-heading h5 {
+  color: #178C20;
+}
+.confirmation_section .confirmation-text p {
+  color: #FFFFFF;
+}
+.confirmation_section .confirmation-text p span {
+  color: #1DA1F2;
+}

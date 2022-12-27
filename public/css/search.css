@@ -1,1 +1,319 @@
-.mid_side_container .mid_heading_container{display:flex;height:50px;border-bottom:1px solid #2f3336;padding:15px;z-index:3;position:fixed;background:#010507;align-items:center;width:600px;border-left:1px solid #2f3336;border-right:1px solid #2f3336}.mid_side_container .mid_heading_container h4{font-size:20px;font-weight:500;color:#e7e9ea;cursor:pointer;margin-left:10px}.mid_side_container .search_header_container{padding:82px 15px 20px 15px;border-left:1px solid #2f3336;border-right:1px solid #2f3336;display:flex;justify-content:space-between;align-items:center}.mid_side_container .search_header_container .search_field{position:relative;display:flex;align-items:center}.mid_side_container .search_header_container .search_field input#searchInput{width:440px;height:40px;padding:0 15px 0 53px;border-radius:28px;border:0;outline:0;background:#202327;color:#666c70;margin-left:-30px;box-shadow:0px 4px 8px 4px rgba(54,54,54,.2)}.mid_side_container .search_header_container .search_field i.fas.fa-search{z-index:1;color:#666c70;padding-left:25px}.mid_side_container .search_header_container .settings_icon button.set_icon{background:rgba(0,0,0,0);width:35px;height:35px;display:flex;justify-content:center;align-items:center;border-radius:50%;transition:.5s;cursor:pointer}.mid_side_container .search_header_container .settings_icon button.set_icon:hover{background:#191919}.mid_side_container .newSearchTweetContainer h4{text-align:center;padding-top:35px;color:#666c70;border-left:1px solid #2f3336;border-right:1px solid #2f3336}.mid_side_container .newSearchTweetContainer .newTweet{display:flex;padding:5px 11px;border-bottom:1px solid #2f3336;cursor:pointer;margin-top:10px;border-left:1px solid #2f3336;border-right:1px solid #2f3336}.mid_side_container .newSearchTweetContainer .newTweet .avatar_image{width:60px}.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image{width:50px;overflow:hidden;margin-right:15px}.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image img.avatar{width:100%;height:50px;border-radius:25px;-o-object-fit:cover;object-fit:cover}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body{width:100%}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header{display:flex;justify-content:space-between;align-items:center}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header .header_items{display:flex;align-items:center}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header .header_items a.show_name{color:#ced0d1;padding-right:4px}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header .header_items span.show_username{color:#5e6266;padding-right:25px}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header .header_items .timeAgo{color:#5e6266;padding-right:10px}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .posted_more{color:#5e6266;cursor:pointer;background:rgba(0,0,0,0);height:35px;width:35px;border-radius:50%;display:flex;justify-content:center;align-items:center;transition:.5s}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .posted_more:hover{background:#0a1720;color:#29a0f0}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .posted_more i.fas.fa-ellipsis-h{pointer-events:none}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu{background-color:#000;box-shadow:rgba(255,255,255,.2) 0px 0px 15px,rgba(255,255,255,.15) 0px 0px 3px 1px;border-radius:5px}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu a.dropdown-item{transition:.5s}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu a.dropdown-item:hover{background:#16181c}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu a.dropdown-item button.remove_btn{border:0;outline:0;background:rgba(0,0,0,0);color:#b91a24;font-weight:700}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu a.dropdown-item button.pin_btn{border:0;outline:0;background:rgba(0,0,0,0);color:#dcdedf}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .replyUser{color:#5e6266}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .replyUser p span{color:#1988d3}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .reply_txt_content{color:#ced0d1}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_content{color:#ced0d1;margin:5px 0 20px 0}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_images{display:grid;grid-template-columns:auto auto;gap:10px;width:100%}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_images .newTweet_img{width:100%;height:100%}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_images .newTweet_img img{width:100%;height:100%;border-radius:10px;-o-object-fit:cover;object-fit:cover}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .replyingUser{display:none}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer{display:flex;justify-content:space-around;align-items:center;margin:10px 0}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.reply{border:0;outline:0;background:rgba(0,0,0,0);color:#4d5053;transition:.5s}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.reply:hover{color:#1a8ad6}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.reply i{pointer-events:none}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.reply span{pointer-events:none}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet{border:0;outline:0;background:rgba(0,0,0,0);color:#4d5053;transition:.5s}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet:hover{color:#019866}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet i{pointer-events:none}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet span{pointer-events:none}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet.active i{color:#019866}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet.active span{color:#019866}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love{border:0;outline:0;background:rgba(0,0,0,0);color:#4d5053;transition:.5s}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love:hover{color:#c21465}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love i{pointer-events:none}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love span{pointer-events:none}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love.lovedIt i{color:#f91880}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love.lovedIt span{color:#f91880}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.share{border:0;outline:0;background:rgba(0,0,0,0);color:#4d5053;transition:.5s}.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.share:hover{color:#1a8ad6}
+.mid_side_container .mid_heading_container {
+  display: flex;
+  height: 50px;
+  border-bottom: 1px solid #2f3336;
+  padding: 15px;
+  z-index: 3;
+  position: fixed;
+  background: #010507;
+  align-items: center;
+  width: 600px;
+  border-left: 1px solid #2f3336;
+  border-right: 1px solid #2f3336;
+}
+.mid_side_container .mid_heading_container h4 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #e7e9ea;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.mid_side_container .search_header_container {
+  padding: 82px 15px 20px 15px;
+  border-left: 1px solid #2f3336;
+  border-right: 1px solid #2f3336;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mid_side_container .search_header_container .search_field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.mid_side_container .search_header_container .search_field input#searchInput {
+  width: 440px;
+  height: 40px;
+  padding: 0 15px 0 53px;
+  border-radius: 28px;
+  border: 0;
+  outline: 0;
+  background: #202327;
+  color: #666C70;
+  margin-left: -30px;
+  box-shadow: 0px 4px 8px 4px rgba(54, 54, 54, 0.2);
+}
+.mid_side_container .search_header_container .search_field i.fas.fa-search {
+  z-index: 1;
+  color: #666C70;
+  padding-left: 25px;
+}
+.mid_side_container .search_header_container .settings_icon button.set_icon {
+  background: transparent;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.mid_side_container .search_header_container .settings_icon button.set_icon:hover {
+  background: #191919;
+}
+.mid_side_container .newSearchTweetContainer h4 {
+  text-align: center;
+  padding-top: 35px;
+  color: #666C70;
+  border-left: 1px solid #2f3336;
+  border-right: 1px solid #2f3336;
+}
+.mid_side_container .newSearchTweetContainer .newTweet {
+  display: flex;
+  padding: 5px 11px;
+  border-bottom: 1px solid #2F3336;
+  cursor: pointer;
+  margin-top: 10px;
+  border-left: 1px solid #2f3336;
+  border-right: 1px solid #2f3336;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image {
+  width: 60px;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image {
+  position: relative;
+  margin-right: 15px;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image img.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image .onlineStatus.active {
+  background: #1A8CD8;
+  border: 2px solid #1A8CD8;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image .onlineStatus {
+  position: absolute;
+  top: -9%;
+  right: -9%;
+  z-index: 10;
+  width: 15px;
+  height: 15px;
+  background: #5e6266;
+  border: 2px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image .onlineStatus::after {
+  content: attr(data-onlineStatus);
+  white-space: nowrap;
+  position: absolute;
+  top: -5px;
+  left: 25px;
+  font-size: 12px;
+  background: #000000;
+  color: #CED0D1;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 5px 10px;
+  visibility: hidden;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image .onlineStatus::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 20px;
+  width: 10px;
+  height: 10px;
+  background: #000000;
+  visibility: hidden;
+  transform: rotate(30deg) skew(342deg, 13deg);
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image .onlineStatus:hover::after {
+  visibility: visible;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image .onlineStatus:hover::before {
+  visibility: visible;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body {
+  width: 100%;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header .header_items {
+  display: flex;
+  align-items: center;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header .header_items a.show_name {
+  color: #CED0D1;
+  padding-right: 4px;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header .header_items span.show_username {
+  color: #5E6266;
+  padding-right: 25px;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header .header_items .timeAgo {
+  color: #5E6266;
+  padding-right: 10px;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .posted_more {
+  color: #5E6266;
+  cursor: pointer;
+  background: transparent;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .posted_more:hover {
+  background: #0A1720;
+  color: #29A0F0;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .posted_more i.fas.fa-ellipsis-h {
+  pointer-events: none;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu {
+  background-color: #000;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+  border-radius: 5px;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu a.dropdown-item {
+  transition: 0.5s;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu a.dropdown-item:hover {
+  background: #16181C;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu a.dropdown-item button.remove_btn {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #B91A24;
+  font-weight: 700;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_header div.dropleft .dropdown-menu a.dropdown-item button.pin_btn {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #dcdedf;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .replyUser {
+  color: #5e6266;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .replyUser p span {
+  color: #1988d3;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .reply_txt_content {
+  color: #CED0D1;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_content {
+  color: #CED0D1;
+  margin: 5px 0 20px 0;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_images {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  width: 100%;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_images .newTweet_img {
+  width: 100%;
+  height: 100%;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_images .newTweet_img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .replyingUser {
+  display: none;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.reply {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #4d5053;
+  transition: 0.5s;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.reply:hover {
+  color: #1A8AD6;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.reply i {
+  pointer-events: none;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.reply span {
+  pointer-events: none;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #4d5053;
+  transition: 0.5s;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet:hover {
+  color: #019866;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet i {
+  pointer-events: none;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet span {
+  pointer-events: none;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet.active i {
+  color: #019866;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.retweet.active span {
+  color: #019866;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #4d5053;
+  transition: 0.5s;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love:hover {
+  color: #C21465;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love i {
+  pointer-events: none;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love span {
+  pointer-events: none;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love.lovedIt i {
+  color: #F91880;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.love.lovedIt span {
+  color: #F91880;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.share {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #4d5053;
+  transition: 0.5s;
+}
+.mid_side_container .newSearchTweetContainer .newTweet .newTweet_body .newTweet_footer button.share:hover {
+  color: #1A8AD6;
+}
