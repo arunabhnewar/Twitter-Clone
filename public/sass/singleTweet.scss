@@ -222,7 +222,6 @@ body {
 }
 
 
-
 //=========== Mid side container ============//
 .mid_side_container {
     height: auto;
@@ -429,18 +428,72 @@ body {
 
 
             .avatar_image {
-                width: 60px;
+
 
                 .image {
-                    width: 50px;
-                    overflow: hidden;
+                    position: relative;
                     margin-right: 15px;
 
                     img.avatar {
-                        width: 100%;
+                        width: 60px;
                         height: 50px;
                         border-radius: 25px;
                         object-fit: cover;
+                    }
+
+                    .onlineStatus.active {
+                        background: #1A8CD8;
+                        border: 2px solid #000000;
+                    }
+
+                    .onlineStatus {
+                        position: absolute;
+                        top: -4%;
+                        right: -3%;
+                        z-index: 10;
+                        width: 15px;
+                        height: 15px;
+                        background: #5e6266;
+                        border: 2px solid #000;
+                        border-radius: 50%;
+                        cursor: pointer;
+
+                        &::after {
+                            content: attr(data-onlineStatus);
+                            white-space: nowrap;
+                            position: absolute;
+                            top: -5px;
+                            left: 25px;
+                            font-size: 12px;
+                            background: #000000;
+                            color: #CED0D1;
+                            border: 1px solid #000000;
+                            border-radius: 4px;
+                            padding: 5px 10px;
+                            visibility: hidden;
+                            box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+                        }
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: 1px;
+                            left: 20px;
+                            width: 10px;
+                            height: 10px;
+                            background: #000000;
+                            visibility: hidden;
+                            transform: rotate(30deg) skew(342deg, 13deg);
+                            box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+                        }
+                    }
+
+                    .onlineStatus:hover::after {
+                        visibility: visible;
+                    }
+
+                    .onlineStatus:hover::before {
+                        visibility: visible;
                     }
                 }
             }
@@ -671,6 +724,8 @@ body {
     }
 }
 
+
+
 //=========== Right side container ============//
 .right_side_container {
     // background: #6A150D;
@@ -721,16 +776,72 @@ div#replyModal {
                     cursor: pointer;
 
                     .avatar_image {
-                        margin-right: 15px;
+
 
                         .image {
+                            margin-right: 15px;
+                            position: relative;
 
                             img.avatar {
                                 width: 50px;
-                                width: 100%;
                                 height: 50px;
                                 border-radius: 25px;
                                 object-fit: cover;
+                            }
+
+                            .onlineStatus.active {
+                                background: #1A8CD8;
+                                border: 2px solid #000000;
+                            }
+
+                            .onlineStatus {
+                                position: absolute;
+                                top: -4%;
+                                right: -3%;
+                                z-index: 10;
+                                width: 15px;
+                                height: 15px;
+                                background: #5e6266;
+                                border: 2px solid #000;
+                                border-radius: 50%;
+                                cursor: pointer;
+
+                                &::after {
+                                    content: attr(data-onlineStatus);
+                                    white-space: nowrap;
+                                    position: absolute;
+                                    top: -5px;
+                                    left: 25px;
+                                    font-size: 12px;
+                                    background: #000000;
+                                    color: #CED0D1;
+                                    border: 1px solid #000000;
+                                    border-radius: 4px;
+                                    padding: 5px 10px;
+                                    visibility: hidden;
+                                    box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+                                }
+
+                                &::before {
+                                    content: "";
+                                    position: absolute;
+                                    top: 1px;
+                                    left: 20px;
+                                    width: 10px;
+                                    height: 10px;
+                                    background: #000000;
+                                    visibility: hidden;
+                                    transform: rotate(30deg) skew(342deg, 13deg);
+                                    box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+                                }
+                            }
+
+                            .onlineStatus:hover::after {
+                                visibility: visible;
+                            }
+
+                            .onlineStatus:hover::before {
+                                visibility: visible;
                             }
                         }
                     }

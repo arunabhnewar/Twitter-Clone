@@ -138,7 +138,7 @@ body {
 }
 .left_side_container .bottom_left_section .user_info .avatar_profile .onlineStatus.active {
   background: #1A8CD8;
-  border: 2px solid #1A8CD8;
+  border: 2px solid #000000;
 }
 .left_side_container .bottom_left_section .user_info .avatar_profile .onlineStatus {
   position: absolute;
@@ -664,7 +664,7 @@ body {
 }
 .mid_side_container .newTweetContainer .newTweet .avatar_image .image .onlineStatus.active {
   background: #1A8CD8;
-  border: 2px solid #1A8CD8;
+  border: 2px solid #000000;
 }
 .mid_side_container .newTweetContainer .newTweet .avatar_image .image .onlineStatus {
   position: absolute;
@@ -937,7 +937,7 @@ div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image 
 }
 div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image .onlineStatus.active {
   background: #1A8CD8;
-  border: 2px solid #1A8CD8;
+  border: 2px solid #000000;
 }
 div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image .onlineStatus {
   position: absolute;
@@ -1074,7 +1074,7 @@ div#replyModal .modal-dialog .modal-content .modal-footer .create_post .reply_av
 }
 div#replyModal .modal-dialog .modal-content .modal-footer .create_post .reply_avatar .onlineStatus.active {
   background: #1A8CD8;
-  border: 2px solid #1A8CD8;
+  border: 2px solid #000000;
 }
 div#replyModal .modal-dialog .modal-content .modal-footer .create_post .reply_avatar .onlineStatus {
   position: absolute;

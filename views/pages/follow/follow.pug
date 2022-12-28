@@ -33,7 +33,14 @@ block bodyContent
                 .modal-footer
                     .create_post 
                         .reply_avatar
-                            .onlineStatus(data-onlineStatus="Offline")
+
+                            -onlineTxt = userProfile.onlineStatus ? "Online now" : userProfile.lastSeen ? "Last seen: " + userProfile.lastSeen.toLocaleString() : "Not seen recently"
+
+                            -isOnline = (user._id.toString() === user._id.toString()) || onlineTxt === "Online now"
+
+                            - onlineTxt = isOnline ? "Online now" : onlineTxt
+
+                            .onlineStatus(data-onlineStatus=onlineTxt, class=isOnline && "active")
                             img(src=avatarUrl, alt="")
                         
                         .post_field 
@@ -174,7 +181,7 @@ block bodyContent
 
                 .user_info 
                     .avatar_profile 
-                        .onlineStatus(data-onlineStatus="Offline")
+                        .onlineStatus(data-onlineStatus=onlineTxt, class=isOnline && "active")
                         img(src=avatarUrl, alt="")
 
                     .name_info 
@@ -213,7 +220,7 @@ block bodyContent
                     .cover_image 
                         - coverURL= userProfile.coverProfile ? `/uploads/${userProfile.coverProfile}`: `/uploads/cover.jpg`;
 
-                        //- img(src="/uploads/cover.jpg", alt="")
+                        
                         img(src=coverURL, alt="") 
                         
                         if userProfile.userName === user.userName
@@ -227,7 +234,7 @@ block bodyContent
                         - avatarURL= userProfile.avatarProfile ? `/uploads/${userProfile.avatarProfile}`: `/uploads/avatar.png`; 
 
                         img(src=avatarURL, alt="")
-                        //- img(src="/uploads/" + userProfile.avatarProfile, alt="")
+                        
 
                         if userProfile._id === user._id 
                             button.uploadImage(data-toggle="modal" data-target="#avatarUpdateModal")

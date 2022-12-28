@@ -1,15 +1,24 @@
 // Dependencies
 const { Server } = require("socket.io");
-const http = require("http");
+const { createServer } = require("http");
 const mongoose = require("mongoose");
 const User = require("./models/User");
+const { instrument } = require("@socket.io/admin-ui");
 
-
-const httpServerSocket = http.createServer();
+const httpServerSocket = createServer();
 
 const io = new Server(httpServerSocket, {
-  cors: "http://localhost:3000",
+  cors: {
+    origin: ["http://localhost:3000", "https://admin.socket.io"],
+    credentials: true
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
+});
+
+
+
+instrument(io, {
+  auth: false
 });
 
 
@@ -20,7 +29,7 @@ io.on("connection", (socket) => {
   // New User Setup
   socket.on("setup", (user) => {
     socket.join(user._id);
-    io.to(user._id).emit("connected");
+    socket.emit("connected");
     console.log(user.userName + " connected");
 
 
@@ -39,7 +48,6 @@ io.on("connection", (socket) => {
           }, { new: true })
             .then((result) => {
               if (result) {
-                // 
                 // console.log(result);
                 console.log(user.userName + " disconnected");
               }

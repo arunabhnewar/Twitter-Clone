@@ -55,6 +55,8 @@ function createFollowElement(data) {
 
     const avatarUrl = data.avatarProfile ? `/uploads/${data.avatarProfile}` : `/uploads/avatar.png`;
 
+
+
     let followDiv = "";
 
     if (data._id !== user._id) {
@@ -67,10 +69,17 @@ function createFollowElement(data) {
 
     const div = document.createElement('div');
     div.classList.add("follow_section");
+
+    let onlineTxt = data?.onlineStatus ? "Online now" : new Date(data?.lastSeen)?.toLocaleString() != "Invalid date" ? "Last seen: " + new Date(data?.lastSeen)?.toLocaleString() : "Not seen recently";
+
+    const isOnline = data?._id.toString() == user._id.toString() || onlineTxt == "Online now";
+
+    onlineTxt = isOnline ? "Online now" : onlineTxt;
+
     div.innerHTML = `
     <div class="social_connection">
         <div class="avatar">
-            <div class="onlineStatus" data-onlineStatus="Offline"></div>
+            <div class="onlineStatus ${isOnline && 'active'}" data-onlineStatus="${onlineTxt}"></div>
             <img src="${avatarUrl}">
         </div>
 

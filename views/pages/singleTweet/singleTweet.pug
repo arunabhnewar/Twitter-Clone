@@ -34,7 +34,14 @@ block bodyContent
                 .modal-footer
                     .create_post 
                         .reply_avatar
-                            .onlineStatus(data-onlineStatus="Offline")
+                            
+                            -onlineTxt = user.onlineStatus ? "Online now" : user.lastSeen ? "Last seen: " + user.lastSeen.toLocaleString() : "Not seen recently"
+
+                            -isOnline = (user._id.toString() === user._id.toString()) || onlineTxt === "Online now"
+
+                            - onlineTxt = isOnline ? "Online now" : onlineTxt
+
+                            .onlineStatus(data-onlineStatus=onlineTxt, class=isOnline && "active")
                             img(src=avatarUrl, alt="")
                         
                         .post_field 
@@ -137,7 +144,7 @@ block bodyContent
 
                 .user_info 
                     .avatar_profile 
-                        .onlineStatus(data-onlineStatus="Offline")
+                        .onlineStatus(data-onlineStatus=onlineTxt, class=isOnline && "active")
                         img(src=avatarUrl, alt="")
 
                     .name_info 

@@ -364,20 +364,65 @@ body {
   border-right: 1px solid #2F3336;
   cursor: pointer;
 }
-.mid_side_container .newTweetContainer .newTweet .avatar_image {
-  width: 60px;
-}
 .mid_side_container .newTweetContainer .newTweet .avatar_image .image {
-  width: 50px;
-  overflow: hidden;
+  position: relative;
   margin-right: 15px;
 }
 .mid_side_container .newTweetContainer .newTweet .avatar_image .image img.avatar {
-  width: 100%;
+  width: 60px;
   height: 50px;
   border-radius: 25px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.mid_side_container .newTweetContainer .newTweet .avatar_image .image .onlineStatus.active {
+  background: #1A8CD8;
+  border: 2px solid #000000;
+}
+.mid_side_container .newTweetContainer .newTweet .avatar_image .image .onlineStatus {
+  position: absolute;
+  top: -4%;
+  right: -3%;
+  z-index: 10;
+  width: 15px;
+  height: 15px;
+  background: #5e6266;
+  border: 2px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mid_side_container .newTweetContainer .newTweet .avatar_image .image .onlineStatus::after {
+  content: attr(data-onlineStatus);
+  white-space: nowrap;
+  position: absolute;
+  top: -5px;
+  left: 25px;
+  font-size: 12px;
+  background: #000000;
+  color: #CED0D1;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 5px 10px;
+  visibility: hidden;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+}
+.mid_side_container .newTweetContainer .newTweet .avatar_image .image .onlineStatus::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 20px;
+  width: 10px;
+  height: 10px;
+  background: #000000;
+  visibility: hidden;
+  transform: rotate(30deg) skew(342deg, 13deg);
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+}
+.mid_side_container .newTweetContainer .newTweet .avatar_image .image .onlineStatus:hover::after {
+  visibility: visible;
+}
+.mid_side_container .newTweetContainer .newTweet .avatar_image .image .onlineStatus:hover::before {
+  visibility: visible;
 }
 .mid_side_container .newTweetContainer .newTweet .newTweet_body {
   width: 100%;
@@ -585,16 +630,65 @@ div#replyModal .modal-dialog .modal-content .modal-body .newTweet {
   display: flex;
   cursor: pointer;
 }
-div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image {
+div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image {
   margin-right: 15px;
+  position: relative;
 }
 div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image img.avatar {
   width: 50px;
-  width: 100%;
   height: 50px;
   border-radius: 25px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image .onlineStatus.active {
+  background: #1A8CD8;
+  border: 2px solid #000000;
+}
+div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image .onlineStatus {
+  position: absolute;
+  top: -4%;
+  right: -3%;
+  z-index: 10;
+  width: 15px;
+  height: 15px;
+  background: #5e6266;
+  border: 2px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image .onlineStatus::after {
+  content: attr(data-onlineStatus);
+  white-space: nowrap;
+  position: absolute;
+  top: -5px;
+  left: 25px;
+  font-size: 12px;
+  background: #000000;
+  color: #CED0D1;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 5px 10px;
+  visibility: hidden;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+}
+div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image .onlineStatus::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 20px;
+  width: 10px;
+  height: 10px;
+  background: #000000;
+  visibility: hidden;
+  transform: rotate(30deg) skew(342deg, 13deg);
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+}
+div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image .onlineStatus:hover::after {
+  visibility: visible;
+}
+div#replyModal .modal-dialog .modal-content .modal-body .newTweet .avatar_image .image .onlineStatus:hover::before {
+  visibility: visible;
 }
 div#replyModal .modal-dialog .modal-content .modal-body .newTweet .newTweet_body .newTweet_header {
   display: flex;

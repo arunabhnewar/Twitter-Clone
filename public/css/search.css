@@ -94,7 +94,7 @@
 }
 .mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image .onlineStatus.active {
   background: #1A8CD8;
-  border: 2px solid #1A8CD8;
+  border: 2px solid #000000;
 }
 .mid_side_container .newSearchTweetContainer .newTweet .avatar_image .image .onlineStatus {
   position: absolute;

@@ -33,7 +33,9 @@ const allPostLoad = async () => {
             const tweetElement = createNewTweet(post);
             newTweetContainer.insertAdjacentElement("afterbegin", tweetElement)
         })
-    } catch (error) { }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 allPostLoad();
@@ -116,7 +118,7 @@ function createNewTweet(data, pinned) {
         tweetTxtContent,
         replyTextContent,
         images: tweetImages,
-        tweetedBy: { _id, firstName, lastName, userName, avatarProfile },
+        tweetedBy: { _id, firstName, lastName, userName, avatarProfile, onlineStatus, lastSeen },
         createdAt,
         loves,
         retweetUsers,
@@ -159,6 +161,15 @@ function createNewTweet(data, pinned) {
     const avatarUrl = avatarProfile ? `/uploads/${avatarProfile}` : `/uploads/avatar.png`;
 
 
+    let onlineTxt = onlineStatus
+        ? "Online now" : new Date(lastSeen)?.toLocaleString() != "Invalid date"
+            ? "Last seen: " + new Date(lastSeen)?.toLocaleString() : "Not seen recently";
+
+    const isOnline = _id.toString() == user._id.toString() || onlineTxt == "Online now";
+
+    onlineTxt = isOnline ? "Online now" : onlineTxt;
+
+
 
     const div = document.createElement("div");
 
@@ -180,7 +191,7 @@ function createNewTweet(data, pinned) {
     <div class="newTweet" onclick="openTweet(event, '${postId}')">
         <div class="avatar_image">
             <div class="image">
-                <div class="onlineStatus" data-onlineStatus="Offline"></div>
+                <div class="onlineStatus ${isOnline && 'active'}" data-onlineStatus="${onlineTxt}"></div>
                 <img class="avatar" src="${avatarUrl}"  />
             </div>
         </div>
