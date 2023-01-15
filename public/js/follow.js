@@ -49,7 +49,7 @@ if (tab === "followers") {
 
 
 
-function createFollowElement(data) {
+function createFollowElement(data, hideFollowBtn) {
     const name = data.firstName + " " + data.lastName;
     const isFollowing = data.followers.includes(user._id);
 
@@ -92,7 +92,7 @@ function createFollowElement(data) {
     </div>
 
     <div class="" >
-        ${followDiv}
+        ${hideFollowBtn ? "" : followDiv}
     </div>
 
     `

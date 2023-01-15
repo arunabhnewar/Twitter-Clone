@@ -62,12 +62,14 @@
 .mid_side_container .search_header_container .settings_icon button.set_icon:hover {
   background: #191919;
 }
+.mid_side_container .newSearchTweetContainer {
+  border-left: 1px solid #2f3336;
+  border-right: 1px solid #2f3336;
+}
 .mid_side_container .newSearchTweetContainer h4 {
   text-align: center;
   padding-top: 35px;
   color: #666C70;
-  border-left: 1px solid #2f3336;
-  border-right: 1px solid #2f3336;
 }
 .mid_side_container .newSearchTweetContainer .newTweet {
   display: flex;

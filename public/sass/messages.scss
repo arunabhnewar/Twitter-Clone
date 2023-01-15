@@ -1,0 +1,103 @@
+//=========== Mid side container ============//
+.mid_side_container {
+    height: auto;
+    flex: 1;
+
+    .mid_message_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        z-index: 3;
+        height: 50px;
+        width: 600px;
+        border-left: 1px solid #2F3336;
+        border-right: 1px solid #2F3336;
+        border-bottom: 1px solid #2f3336;
+        position: fixed;
+        background: #010507;
+
+        .message_heading_container {
+            display: flex;
+            align-items: center;
+
+            h4 {
+                font-size: 20px;
+                font-weight: 500;
+                color: #E7E9EA;
+                cursor: pointer;
+                margin-left: 20px;
+            }
+
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                transition: 0.5s;
+
+                &:hover {
+                    background: #191919;
+                }
+            }
+        }
+
+        .new_messages_routing {
+            display: flex;
+            align-items: center;
+
+            .settings_icon {
+                margin-right: 15px;
+
+                button.set_icon {
+                    background: transparent;
+                    width: 35px;
+                    height: 35px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    transition: 0.5s;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: #191919;
+                    }
+                }
+
+            }
+
+            a {
+                width: 35px;
+                height: 35px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                transition: 0.5s;
+
+                button {
+                    background: transparent;
+                    border: 0;
+                    outline: 0;
+                }
+
+                &:hover {
+                    background: #191919;
+                }
+            }
+        }
+    }
+
+    .newChatContainer {
+        border-left: 1px solid #2F3336;
+        border-right: 1px solid #2F3336;
+        padding: 50px 5px;
+        width: 600px;
+        height: 100%;
+
+    }
+}

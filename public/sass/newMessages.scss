@@ -1,0 +1,256 @@
+// Mid side container
+.mid_side_container {
+
+    .mid_heading_container {
+        display: flex;
+        height: 50px;
+        border-bottom: 1px solid #2f3336;
+        padding: 15px;
+        z-index: 3;
+        position: fixed;
+        background: #010507;
+        align-items: center;
+        width: 600px;
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+
+        h4 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #e7e9ea;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+    }
+
+    .newMessageContainer {
+        width: 600px;
+        margin-top: 50px;
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+        border-bottom: 1px solid #2f3336;
+        padding: 15px;
+
+        .createChatContainer {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            label {
+                z-index: 1;
+                padding-left: 10px;
+            }
+
+            input#userSearch {
+                width: 75%;
+                border: 0;
+                outline: 0;
+                padding: 0 15px 0 53px;
+                border-radius: 28px;
+                height: 33px;
+                margin-right: 15px;
+                margin-left: -30px;
+                background: #202327;
+                color: #666C70;
+            }
+
+            i.fas.fa-search {
+                color: #1B8AD6;
+                padding-top: 15px;
+            }
+
+            button {
+                padding: 5px 25px;
+                border: 0;
+                outline: 0;
+                background: #1A8CD8;
+                color: #FFFFFF;
+                border-radius: 20px;
+                font-weight: 500;
+            }
+
+            button:disabled {
+                background: #8ECDF7;
+                padding: 5px 25px;
+                border: 0;
+                outline: 0;
+                color: #FFFFFF;
+                border-radius: 20px;
+                font-weight: 500;
+            }
+        }
+
+        div#selectedUsers {
+            margin: 10px 0;
+            // display: flex;
+            display: grid;
+            grid-template-columns: repeat(5, 135px);
+
+            .selectedUser {
+                background: #202327;
+                padding: 5px;
+                width: 130px;
+                border-radius: 25px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 2px solid #1A8CD8;
+                }
+
+                span {
+                    color: white;
+                }
+
+                button {
+                    background: transparent;
+                    border: 0;
+                    outline: 0;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .newFollowContainer {
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+        height: 100%;
+
+        h4 {
+            text-align: center;
+            padding-top: 15px;
+            color: #666C70;
+        }
+
+        .follow_section {
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+
+            &:hover {
+                background: #181818;
+            }
+
+            .social_connection {
+                display: flex;
+                align-items: center;
+
+                .avatar {
+                    position: relative;
+                    margin-left: 5px;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    .onlineStatus.active {
+                        background: #1A8CD8;
+                        border: 2px solid #000000;
+                    }
+
+                    .onlineStatus {
+                        position: absolute;
+                        top: -7%;
+                        right: -3%;
+                        z-index: 10;
+                        width: 15px;
+                        height: 15px;
+                        background: #5e6266;
+                        border: 2px solid #000;
+                        border-radius: 50%;
+                        cursor: pointer;
+
+                        &::after {
+                            content: attr(data-onlineStatus);
+                            white-space: nowrap;
+                            position: absolute;
+                            top: -5px;
+                            left: 25px;
+                            font-size: 12px;
+                            background: #000000;
+                            color: #CED0D1;
+                            border: 1px solid #000000;
+                            border-radius: 4px;
+                            padding: 5px 10px;
+                            visibility: hidden;
+                            box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+                        }
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: 1px;
+                            left: 20px;
+                            width: 10px;
+                            height: 10px;
+                            background: #000000;
+                            visibility: hidden;
+                            transform: rotate(30deg) skew(342deg, 13deg);
+                            box-shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
+                        }
+                    }
+
+                    .onlineStatus:hover::after {
+                        visibility: visible;
+                    }
+
+                    .onlineStatus:hover::before {
+                        visibility: visible;
+                    }
+                }
+
+                .userNameDisplay {
+                    margin-left: 15px;
+
+                    a {
+                        h5 {
+                            color: #EFF3F4;
+                            font-size: 18px;
+                        }
+                    }
+
+                    h6 {
+                        margin-top: 2px;
+                        color: #2f3336;
+                    }
+                }
+            }
+
+            div {
+
+                button#followBtn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 0;
+                    text-align: center;
+                    width: 150px;
+                    height: 50px;
+                    font-weight: 600;
+                    background: #EFF3F4;
+                    color: #2f3336;
+                    padding: 5px 50px;
+                    border-radius: 25px;
+                    margin-right: 5px;
+                }
+
+                button#followBtn.follow.active {
+                    background: transparent;
+                    border: 1px solid #EFF3F4;
+                    color: #EFF3F4;
+                    font-weight: 600;
+
+                }
+            }
+        }
+    }
+}

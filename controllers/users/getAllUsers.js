@@ -8,13 +8,18 @@ const getAllUsers = async (req, res, next) => {
         const searchingText = req.query.searchingText;
 
         if (searchingText) {
-            filterObj = { $or: [{ firstName: { $regex: new RegExp(req.query.searchingText, "ig") } }, { lastName: { $regex: new RegExp(req.query.searchingText, "ig") } }, { userName: { $regex: new RegExp(req.query.searchingText, "ig") } }, { email: searchingText }] }
+            filterObj = {
+                $or: [
+                    { firstName: { $regex: new RegExp(req.query.searchingText, "ig") } },
+                    { lastName: { $regex: new RegExp(req.query.searchingText, "ig") } },
+                    { userName: { $regex: new RegExp(req.query.searchingText, "ig") } },
+                    { email: searchingText }]
+            }
         }
-        // console.log(req.query.searchingText)
 
         const users = await User.find(filterObj);
 
-        res.json(users);
+        return res.json(users);
 
     } catch (error) {
         next(createHttpError(500, "Sorry, internal server error!!"))

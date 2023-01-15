@@ -81,13 +81,14 @@
 
 
     .newSearchTweetContainer {
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
 
         h4 {
             text-align: center;
             padding-top: 35px;
             color: #666C70;
-            border-left: 1px solid #2f3336;
-            border-right: 1px solid #2f3336;
+
         }
 
         .newTweet {

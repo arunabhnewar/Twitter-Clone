@@ -519,3 +519,15 @@ function deleteReplyData() {
     replyImgInput.setAttribute("disabled", "");
 }
 
+
+
+
+function getChatName(users) {
+    let chatName = users.map((user) => {
+        user.userName
+    });
+
+    chatName = chatName.join(", ");
+
+    return chatName;
+}

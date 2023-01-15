@@ -15,6 +15,8 @@ const profileRoute = require("./routes/profile/profileRoute");
 const searchRoute = require("./routes/search/searchRoute");
 const usersRoute = require("./routes/users/usersRoute");
 const httpServerSocket = require("./socket");
+const messageRoute = require("./routes/message/messageRoute");
+const chatRoute = require("./routes/chat/chatRoute");
 
 
 
@@ -45,6 +47,8 @@ app.use("/posts", postRoute); //Post Route
 app.use("/profile", profileRoute); //Profile Route
 app.use("/search", searchRoute); //Search Route
 app.use("/users", usersRoute); //Users Route
+app.use("/messages", messageRoute); //Messages Route
+app.use("/chat", chatRoute); //Chat Route
 app.use("/", homeRouter); //Home Route
 
 
@@ -68,7 +72,7 @@ async function twitter() {
     });
     console.log("DB Fucked Successfully!!");
 
-    
+
     // Socket Server listen
     httpServerSocket.listen(process.env.SOCKET_PORT || 3005, () => {
       console.log("Socket Server has been fucking on port" + " " + 3005);

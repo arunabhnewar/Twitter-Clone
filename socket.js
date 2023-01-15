@@ -73,7 +73,6 @@ setInterval(async () => {
   roomNIds.forEach(id => {
 
     if (mongoose.isValidObjectId(id)) {
-
       User.findByIdAndUpdate(id, {
         $set: {
           onlineStatus: true,
